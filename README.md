@@ -1,6 +1,6 @@
 <h1 id="donate">遇见</h1>
 
-<img src="img/Meet.jpg" width="30%"/>  <img src="img/Meet.jpg" width="30%"/>  <img src="img/Meet.jpg" width="30%"/>
+<img src="img/Meet.jpg" width="33%"/>  <img src="img/Meet.jpg" width="33%"/>  <img src="img/Meet.jpg" width="33%"/>
 
 项目中除了Bmob的私有空间是需要收费的，其他都是免费的，而私有空间主要的作用是用来上传头像和文件的，所以各位可以使用我的Key验证此功能，
 但是尽量不要直接使用我的Key，因为容量和请求次数也是有限的，在源码根目录的Class中包含了PPT和截图，如果在课程中碰到问题可以查阅本篇的
