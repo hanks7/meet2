@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="10dp">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:gravity="center"
+            android:text="关于无法连接服务器通知"
+            android:textColor="@android:color/black"
+            android:textSize="24sp" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1px"
+            android:layout_marginTop="10dp"
+            android:alpha="0.2"
+            android:background="@android:color/black" />
+
+        <TextView
+            android:textColor="@android:color/black"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="同学们好：\n
+\t\t\t\t\tMeet App上线至今，经历了多个小版本的迭代，由于体验人数的急剧上升，也反馈了很多问题得到修复，也让我们的课程更加的丰富和精彩了，不过同时带来的也是服务器的压力，目前我的融云额度已经用光了，Bmob后台的并发数据也一度达到峰值：" />
+
+        <com.github.chrisbanes.photoview.PhotoView
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:src="@drawable/img_bmob_data" />
+
+        <TextView
+            android:textColor="@android:color/black"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="再加上同学们在学习过程中也会使用，所以如果你遇到服务器无法连接，不用担心，你只需要在源码中替换成自己申请的App Key 即可，我也会不定时的增加额度，本着最小学习成本的原则，我使用的都是免费的版本，不过不用担心，这并不会影响你的学习进度和学习收获，反而会让你收获更多不曾接触的知识，这是一门面向中高级的Android进阶课程，同时也是一门适合所有人的突破自我的课程，加油，天道酬勤。" />
+
+    </LinearLayout>
+
+</ScrollView>

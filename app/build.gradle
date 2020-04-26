@@ -1,0 +1,104 @@
+apply plugin: 'com.android.application'
+
+/**
+ * 主Model App ——> build.gradle
+ * N个副Model ——> build.gradle
+ *
+ * 1.统一性
+ * 2.便于管理
+ * 3.版本管理
+ *
+ * Gradle构建的三个性能指标：
+ * - 全量编译：全部编译 - Open Project
+ * - 代码增量编译：修改了Java/Kotlin下面的代码的时候编译
+ * - 资源增量编译：修改了res下面的资源文件的时候编译
+ *
+ * 发布App到应用市场：多渠道打包/全部打包
+ * 调试：不需要这么多，DEBUG
+ */
+android {
+    //调试
+    //if(rootProject.hasProperty('devBuild')){
+    //splits.abi.enable = false
+    //splits.density.enable = false
+    //禁用PNG压缩
+    //aaptOptions.cruncherEnabled = false
+    //}
+    compileSdkVersion rootProject.ext.android["compileSdkVersion"]
+    buildToolsVersion rootProject.ext.android["buildToolsVersion"]
+
+    //默认配置
+    defaultConfig {
+        applicationId rootProject.ext.android["applicationId"]
+        minSdkVersion rootProject.ext.android["minSdkVersion"]
+        targetSdkVersion rootProject.ext.android["targetSdkVersion"]
+        versionCode rootProject.ext.android["versionCode"]
+        versionName rootProject.ext.android["versionName"]
+
+        //Android Studio 3.0 之后 多渠道需要配置方向
+        flavorDimensions "default"
+
+        multiDexEnabled true
+        //调试
+        //resConfigs("zh","xxhdpi")
+
+        ndk {
+            //"armeabi", "x86","x86_64"
+            abiFilters "armeabi-v7a", "arm64-v8a"
+        }
+    }
+
+    //签名配置
+    signingConfigs {
+        release {
+            keyAlias 'meet'
+            keyPassword '123456'
+            storeFile file('/src/main/jks/meet.jks')
+            storePassword '123456'
+        }
+    }
+
+    //打包配置
+    buildTypes {
+        release {
+            //清理无用资源
+            //shrinkResources true
+            //是否启动ZipAlign压缩
+            zipAlignEnabled true
+            //Demo需要给同学们使用则暂不混淆
+            //是否混淆
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            //签名
+            signingConfig signingConfigs.release
+        }
+    }
+
+    //渠道配置
+    productFlavors {
+        xiaomi {
+            manifestPlaceholders = [APP_CHANNEL_VALUE: "xiaomi"]
+        }
+        baidu {
+            manifestPlaceholders = [APP_CHANNEL_VALUE: "baidu"]
+        }
+        wandoujia {
+            manifestPlaceholders = [APP_CHANNEL_VALUE: "wandoujia"]
+        }
+        yingyongbao {
+            manifestPlaceholders = [APP_CHANNEL_VALUE: "yingyongbao"]
+        }
+        //....
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    //添加Framework依赖
+    implementation project(path: ':framework')
+}
