@@ -18,12 +18,12 @@ apply plugin: 'com.android.application'
  */
 android {
     //调试
-    //if(rootProject.hasProperty('devBuild')){
-    //splits.abi.enable = false
-    //splits.density.enable = false
-    //禁用PNG压缩
-    //aaptOptions.cruncherEnabled = false
-    //}
+    if(rootProject.hasProperty('devBuild')){
+    splits.abi.enable = false
+    splits.density.enable = false
+//    禁用PNG压缩
+    aaptOptions.cruncherEnabled = false
+    }
     compileSdkVersion rootProject.ext.android["compileSdkVersion"]
     buildToolsVersion rootProject.ext.android["buildToolsVersion"]
 

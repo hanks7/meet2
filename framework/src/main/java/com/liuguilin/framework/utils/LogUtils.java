@@ -32,7 +32,16 @@ public class LogUtils {
         if (BuildConfig.LOG_DEBUG) {
             if (!TextUtils.isEmpty(text)) {
                 Log.i(BuildConfig.LOG_TAG, text);
-                //writeToFile(text);
+                writeToFile(text);
+            }
+        }
+    }
+
+    public static void i(String tag,String text) {
+        if (BuildConfig.LOG_DEBUG) {
+            if (!TextUtils.isEmpty(text)) {
+                Log.i(BuildConfig.LOG_TAG,tag+" :"+ text);
+                writeToFile(text);
             }
         }
     }
@@ -41,7 +50,7 @@ public class LogUtils {
         if (BuildConfig.LOG_DEBUG) {
             if (!TextUtils.isEmpty(text)) {
                 Log.e(BuildConfig.LOG_TAG, text);
-                //writeToFile(text);
+                writeToFile(text);
             }
         }
     }
@@ -51,7 +60,7 @@ public class LogUtils {
      *
      * @param text
      */
-    public static void writeToFile(String text) {
+    private static void writeToFile(String text) {
         //开始写入
         FileOutputStream fileOutputStream = null;
         BufferedWriter bufferedWriter = null;
@@ -74,7 +83,8 @@ public class LogUtils {
             }
             fileOutputStream = new FileOutputStream(fileRoot + fileName, true);
             //编码问题 GBK 正确的存入中文
-            bufferedWriter = new BufferedWriter(new OutputStreamWriter(fileOutputStream, Charset.forName("gbk")));
+            bufferedWriter = new BufferedWriter(new OutputStreamWriter(fileOutputStream, Charset.forName("Utf-8")));
+//            bufferedWriter = new BufferedWriter(new OutputStreamWriter(fileOutputStream, Charset.forName("gbk")));
             bufferedWriter.write(log);
         } catch (FileNotFoundException e) {
             e.printStackTrace();

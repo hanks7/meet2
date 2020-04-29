@@ -7,13 +7,13 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.provider.Settings;
-import android.util.Log;
 import android.widget.Toast;
 
 import com.liuguilin.framework.event.EventManager;
 import com.liuguilin.framework.event.MessageEvent;
 import com.liuguilin.framework.helper.ActivityHelper;
 import com.liuguilin.framework.utils.LanguaueUtils;
+import com.liuguilin.framework.utils.LogUtils;
 
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
@@ -197,7 +197,7 @@ public class BaseActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        Log.i(  "cc-ui-activity", "(" + getClass().getSimpleName() + ".java:0)");
+        LogUtils.i(  "ui-activity", "(" + getClass().getSimpleName() + ".java:0)");
     }
 
     @Subscribe(threadMode = ThreadMode.MAIN)
