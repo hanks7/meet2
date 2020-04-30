@@ -4,6 +4,7 @@ import android.content.Context;
 
 import com.liuguilin.framework.bmob.BmobManager;
 import com.liuguilin.framework.cloud.CloudManager;
+import com.liuguilin.framework.crash.CrashHandler;
 import com.liuguilin.framework.helper.NotificationHelper;
 import com.liuguilin.framework.helper.WindowHelper;
 import com.liuguilin.framework.manager.KeyWordManager;
@@ -61,6 +62,8 @@ public class Framework {
         ZXingLibrary.initDisplayOpinion(mContext);
         NotificationHelper.getInstance().createChannel(mContext);
         KeyWordManager.getInstance().initManager(mContext);
+
+        CrashHandler.getInstance().init(mContext);
 
         //全局捕获RxJava异常
         RxJavaPlugins.setErrorHandler(new Consumer<Throwable>() {

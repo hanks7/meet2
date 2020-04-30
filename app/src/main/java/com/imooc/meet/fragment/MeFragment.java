@@ -121,6 +121,7 @@ public class MeFragment extends BaseFragment implements View.OnClickListener {
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.ll_me_info:
+                test();
                 //个人信息
                 startActivity(new Intent(getActivity(), MeInfoActivity.class));
                 break;
@@ -145,6 +146,11 @@ public class MeFragment extends BaseFragment implements View.OnClickListener {
                 startActivity(new Intent(getActivity(), SettingActivity.class));
                 break;
         }
+    }
+//测试crash 错误日志收集  根目录/crash/中
+    private void test() {
+        String str=null;
+        str.startsWith("kkk");
     }
 
     @Subscribe(threadMode = ThreadMode.MAIN)
