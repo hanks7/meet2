@@ -10,8 +10,6 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import androidx.viewpager.widget.ViewPager;
-
 import com.imooc.meet.R;
 import com.liuguilin.framework.base.BasePageAdapter;
 import com.liuguilin.framework.base.BaseUIActivity;
@@ -20,6 +18,8 @@ import com.liuguilin.framework.utils.AnimUtils;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import androidx.viewpager.widget.ViewPager;
 
 /**
  * FileName: GuideActivity
@@ -75,7 +75,7 @@ public class GuideActivity extends BaseUIActivity implements View.OnClickListene
         mViewPager = (ViewPager) findViewById(R.id.mViewPager);
 
         iv_music_switch.setOnClickListener(this);
-        tv_guide_skip.setOnClickListener(this);
+        tv_guide_skip.setOnClickListener(this);//nf0a3ch6
 
         view1 = View.inflate(this, R.layout.layout_pager_guide_1, null);
         view2 = View.inflate(this, R.layout.layout_pager_guide_2, null);

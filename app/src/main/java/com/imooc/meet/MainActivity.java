@@ -24,6 +24,7 @@ import com.liuguilin.framework.event.EventManager;
 import com.liuguilin.framework.event.MessageEvent;
 import com.liuguilin.framework.gson.TokenBean;
 import com.liuguilin.framework.helper.UpdateHelper;
+import com.liuguilin.framework.java.SimulationData;
 import com.liuguilin.framework.manager.DialogManager;
 import com.liuguilin.framework.manager.HttpManager;
 import com.liuguilin.framework.utils.LogUtils;
@@ -138,7 +139,7 @@ public class MainActivity extends BaseUIActivity implements View.OnClickListener
         checkToken();
 
         //模拟数据
-        //SimulationData.testData();
+        SimulationData.testData();
     }
 
     /**

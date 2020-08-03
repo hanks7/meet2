@@ -75,6 +75,14 @@ public class TouchPictureV extends View {
         mPaintMove = new Paint();
     }
 
+    /**
+     *   onSizeChanged() 在控件大小发生改变时调用。所以这里初始化会被调用一次
+     *     作用：获取控件的宽和高度
+     * @param w
+     * @param h
+     * @param oldw
+     * @param oldh
+     */
     @Override
     protected void onSizeChanged(int w, int h, int oldw, int oldh) {
         super.onSizeChanged(w, h, oldw, oldh);

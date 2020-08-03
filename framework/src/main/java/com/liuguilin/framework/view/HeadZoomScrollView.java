@@ -8,6 +8,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ScrollView;
 
+import com.liuguilin.framework.utils.Ulog;
+
 /**
  * FileName: HeadZoomScrollView
  * Founder: LiuGuiLin
@@ -48,9 +50,9 @@ public class HeadZoomScrollView extends ScrollView {
     @Override
     protected void onFinishInflate() {
         super.onFinishInflate();
-        if (getChildAt(0) != null) {
+        if (getChildAt(0) != null) {//ScrollView中有一个LinearLayout
             ViewGroup vg = (ViewGroup) getChildAt(0);
-            if (vg.getChildAt(0) != null) {
+            if (vg.getChildAt(0) != null) {//LinearLayout中的第一个view
                 mZoomView = vg.getChildAt(0);
             }
         }
@@ -58,19 +60,18 @@ public class HeadZoomScrollView extends ScrollView {
 
     @Override
     public boolean dispatchTouchEvent(MotionEvent ev) {
+
         //获取View的宽高
         if (mZoomViewWidth <= 0 || mZoomViewHeight <= 0) {
             mZoomViewWidth = mZoomView.getMeasuredWidth();
             mZoomViewHeight = mZoomView.getMeasuredHeight();
         }
-
+        Ulog.i("mZoomViewWidth() ", mZoomViewWidth);
         switch (ev.getAction()) {
             case MotionEvent.ACTION_MOVE:
-                if (!isScrolling) {
-                    //说明没有滑动
-                    if (getScrollY() == 0) {
-                        //没有滑动说明是第一次滑动 记录
-                        firstPosition = ev.getY();
+                if (!isScrolling) {//说明没有滑动,手指第一次摸到屏幕
+                    if (getScrollY() == 0) {//viewGroup是在顶端
+                        firstPosition = ev.getY();//没有滑动说明是第一次滑动 记录
                     } else {
                         break;
                     }
@@ -96,10 +97,10 @@ public class HeadZoomScrollView extends ScrollView {
      * 回调动画
      */
     private void replyZoomView() {
+        Ulog.i(" mZoomView.getMeasuredWidth() ",  mZoomView.getMeasuredWidth());
         //计算下拉的缩放值再让属性动画根据这个值复原
         int distance = mZoomView.getMeasuredWidth() - mZoomViewWidth;
-        ValueAnimator valueAnimator = ValueAnimator.ofFloat(distance,0)
-                .setDuration((long) (distance * mReplyRate));
+        ValueAnimator valueAnimator = ValueAnimator.ofFloat(distance, 0).setDuration((long) (distance * mReplyRate));
         valueAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override
             public void onAnimationUpdate(ValueAnimator animation) {
@@ -115,11 +116,13 @@ public class HeadZoomScrollView extends ScrollView {
      * @param zoom
      */
     private void setZoomView(float zoom) {
+
         if (mZoomViewWidth <= 0 || mZoomViewHeight <= 0) {
             return;
         }
         ViewGroup.LayoutParams lp = mZoomView.getLayoutParams();
         lp.width = (int) (mZoomViewWidth + zoom);
+
         // 现在的宽/原本的宽 得到 缩放比例 * 原本的高 得到缩放的高
         lp.height = (int) (mZoomViewHeight * ((mZoomViewWidth + zoom) / mZoomViewWidth));
         //设置间距

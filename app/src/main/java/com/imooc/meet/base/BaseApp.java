@@ -3,14 +3,10 @@ package com.imooc.meet.base;
 import android.app.ActivityManager;
 import android.app.Application;
 import android.content.Context;
-import android.os.Handler;
-import android.widget.Toast;
-
-import androidx.multidex.MultiDex;
 
 import com.liuguilin.framework.Framework;
-import com.liuguilin.framework.helper.FlavorHelper;
-import com.liuguilin.framework.utils.LogUtils;
+
+import androidx.multidex.MultiDex;
 
 /**
  * FileName: BaseApp
@@ -18,11 +14,16 @@ import com.liuguilin.framework.utils.LogUtils;
  * Profile: App
  */
 public class BaseApp extends Application {
+    public static BaseApp app;
+
+    public static BaseApp getInstance() {
+        return app;
+    }
 
     @Override
     public void onCreate() {
         super.onCreate();
-
+        app = this;
         /**
          * Application的优化
          * 1.必要的组件在程序主页去初始化

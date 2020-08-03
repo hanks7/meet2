@@ -1,10 +1,7 @@
 package com.liuguilin.framework.bmob;
 
 import android.content.Context;
-import android.util.Log;
-import android.view.View;
 
-import com.google.android.material.snackbar.Snackbar;
 import com.liuguilin.framework.utils.CommonUtils;
 import com.liuguilin.framework.utils.LogUtils;
 

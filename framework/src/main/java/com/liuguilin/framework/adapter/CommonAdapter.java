@@ -3,10 +3,9 @@ package com.liuguilin.framework.adapter;
 
 import android.view.ViewGroup;
 
-import androidx.annotation.NonNull;
-import androidx.recyclerview.widget.RecyclerView;
-
 import java.util.List;
+
+import androidx.recyclerview.widget.RecyclerView;
 
 /**
  * FileName: CommonAdapter

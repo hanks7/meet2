@@ -11,10 +11,6 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
-import androidx.recyclerview.widget.DividerItemDecoration;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
 import com.imooc.meet.R;
 import com.imooc.meet.model.AddFriendModel;
 import com.liuguilin.framework.adapter.CommonAdapter;
@@ -29,6 +25,9 @@ import com.liuguilin.framework.utils.LogUtils;
 import java.util.ArrayList;
 import java.util.List;
 
+import androidx.recyclerview.widget.DividerItemDecoration;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 import cn.bmob.v3.exception.BmobException;
 import cn.bmob.v3.listener.FindListener;
 
@@ -53,7 +52,7 @@ public class AddFriendActivity extends BaseBackActivity implements View.OnClickL
     private LinearLayout ll_to_contact;
     private EditText et_phone;
     private ImageView iv_search;
-    private RecyclerView mSearchResultView;
+    private RecyclerView mRecyclerView;
 
     private View include_empty_view;
 
@@ -80,14 +79,14 @@ public class AddFriendActivity extends BaseBackActivity implements View.OnClickL
         et_phone = (EditText) findViewById(R.id.et_phone);
         iv_search = (ImageView) findViewById(R.id.iv_search);
 
-        mSearchResultView = (RecyclerView) findViewById(R.id.mSearchResultView);
+        mRecyclerView = (RecyclerView) findViewById(R.id.mSearchResultView);
 
         ll_to_contact.setOnClickListener(this);
         iv_search.setOnClickListener(this);
 
         //列表的实现
-        mSearchResultView.setLayoutManager(new LinearLayoutManager(this));
-        mSearchResultView.addItemDecoration(new DividerItemDecoration(this, DividerItemDecoration.VERTICAL));
+        mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
+        mRecyclerView.addItemDecoration(new DividerItemDecoration(this, DividerItemDecoration.VERTICAL));
 
         mAddFriendAdapter = new CommonAdapter<>(mList, new CommonAdapter.OnMoreBindDataListener<AddFriendModel>() {
             @Override
@@ -116,8 +115,7 @@ public class AddFriendActivity extends BaseBackActivity implements View.OnClickL
                     viewHolder.itemView.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
-                            UserInfoActivity.startActivity(AddFriendActivity.this,
-                                    model.getUserId());
+                            UserInfoActivity.startActivity(AddFriendActivity.this, model.getUserId());
                         }
                     });
                 }
@@ -134,7 +132,7 @@ public class AddFriendActivity extends BaseBackActivity implements View.OnClickL
             }
         });
 
-        mSearchResultView.setAdapter(mAddFriendAdapter);
+        mRecyclerView.setAdapter(mAddFriendAdapter);
     }
 
     @Override
@@ -190,7 +188,7 @@ public class AddFriendActivity extends BaseBackActivity implements View.OnClickL
                 if (CommonUtils.isEmpty(list)) {
                     IMUser imUser = list.get(0);
                     include_empty_view.setVisibility(View.GONE);
-                    mSearchResultView.setVisibility(View.VISIBLE);
+                    mRecyclerView.setVisibility(View.VISIBLE);
 
                     //每次你查询有数据的话则清空
                     mList.clear();
@@ -204,7 +202,7 @@ public class AddFriendActivity extends BaseBackActivity implements View.OnClickL
                 } else {
                     //显示空数据
                     include_empty_view.setVisibility(View.VISIBLE);
-                    mSearchResultView.setVisibility(View.GONE);
+                    mRecyclerView.setVisibility(View.GONE);
                 }
             }
         });
