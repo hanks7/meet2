@@ -11,6 +11,10 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
+import androidx.recyclerview.widget.DividerItemDecoration;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
 import com.imooc.meet.R;
 import com.imooc.meet.model.AddFriendModel;
 import com.liuguilin.framework.adapter.CommonAdapter;
@@ -25,9 +29,6 @@ import com.liuguilin.framework.utils.LogUtils;
 import java.util.ArrayList;
 import java.util.List;
 
-import androidx.recyclerview.widget.DividerItemDecoration;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 import cn.bmob.v3.exception.BmobException;
 import cn.bmob.v3.listener.FindListener;
 

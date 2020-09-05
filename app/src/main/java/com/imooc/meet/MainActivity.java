@@ -10,6 +10,9 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
+
 import com.google.gson.Gson;
 import com.imooc.meet.fragment.ChatFragment;
 import com.imooc.meet.fragment.MeFragment;
@@ -19,6 +22,7 @@ import com.imooc.meet.service.CloudService;
 import com.imooc.meet.ui.FirstUploadActivity;
 import com.liuguilin.framework.base.BaseUIActivity;
 import com.liuguilin.framework.bmob.BmobManager;
+import com.liuguilin.framework.bmob.IMUser;
 import com.liuguilin.framework.entity.Constants;
 import com.liuguilin.framework.event.EventManager;
 import com.liuguilin.framework.event.MessageEvent;
@@ -29,6 +33,8 @@ import com.liuguilin.framework.manager.DialogManager;
 import com.liuguilin.framework.manager.HttpManager;
 import com.liuguilin.framework.utils.LogUtils;
 import com.liuguilin.framework.utils.SpUtils;
+import com.liuguilin.framework.utils.Ugson;
+import com.liuguilin.framework.utils.Ulog;
 import com.liuguilin.framework.view.DialogView;
 
 import org.greenrobot.eventbus.Subscribe;
@@ -37,8 +43,8 @@ import org.greenrobot.eventbus.ThreadMode;
 import java.util.HashMap;
 import java.util.List;
 
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentTransaction;
+import cn.bmob.v3.exception.BmobException;
+import cn.bmob.v3.listener.FindListener;
 import io.reactivex.Observable;
 import io.reactivex.ObservableOnSubscribe;
 import io.reactivex.android.schedulers.AndroidSchedulers;
@@ -92,6 +98,22 @@ public class MainActivity extends BaseUIActivity implements View.OnClickListener
         setContentView(R.layout.activity_main);
 
         initView();
+        test();
+    }
+
+    /**
+     * 得到所有好友并保存到数据库中
+     */
+    private void test() {
+        //查询所有的好友 取100个
+        BmobManager.getInstance().queryAllUser(new FindListener<IMUser>() {
+            @Override
+            public void done(List<IMUser> list, BmobException e) {
+                Ugson.toJson(list);
+                Ulog.writeToFile("Bmob中存储的所有好友" + Ugson.toJson(list));
+
+            }
+        });
     }
 
     /**
@@ -184,15 +206,38 @@ public class MainActivity extends BaseUIActivity implements View.OnClickListener
      */
     private void createToken() {
         LogUtils.i("createToken");
-        if( BmobManager.getInstance().getUser() == null){
+        if (BmobManager.getInstance().getUser() == null) {
             Toast.makeText(this, "登录异常", Toast.LENGTH_SHORT).show();
             return;
         }
         /**
          * 1.去融云后台获取Token
          * 2.连接融云
+         *
+         * {
+         *     "age": 10,
+         *     "birthday": "1995-5-11",
+         *     "constellation": "双子座",
+         *     "desc": "加油！！！！！！！！！！我",
+         *     "hobby": "电影",
+         *     "nickName": "昵称！！！！！我",
+         *     "photo": "http://file.cilc.cloud/2020/09/02/cfcef1a67d2242bbbec4039ea5d3e9c6.jpg",
+         *     "sex": true,
+         *     "status": "热恋",
+         *     "tokenNickName": "昵称",
+         *     "tokenPhoto": "http://file.cilc.cloud/2020/09/02/54fca8cd1b3540b5b3d95a42f478f571.jpg",
+         *     "mobilePhoneNumber": "18970962301",
+         *     "mobilePhoneNumberVerified": true,
+         *     "sessionToken": "5f42e44240ee26018058142cf246abc9",
+         *     "username": "18970962301",
+         *     "_c_": "IMUser",
+         *     "createdAt": "2019-09-21 17:56:12",
+         *     "objectId": "549a853ecd",
+         *     "updatedAt": "2020-09-02 22:08:04"
+         * }
          */
         final HashMap<String, String> map = new HashMap<>();
+        Ulog.writeToFile("登录人的个人信息：" + Ugson.toJson(BmobManager.getInstance().getUser()));
         map.put("userId", BmobManager.getInstance().getUser().getObjectId());
         map.put("name", BmobManager.getInstance().getUser().getTokenNickName());
         map.put("portraitUri", BmobManager.getInstance().getUser().getTokenPhoto());
