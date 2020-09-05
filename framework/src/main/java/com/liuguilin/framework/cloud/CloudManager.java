@@ -37,8 +37,8 @@ public class CloudManager {
     //Url
     public static final String TOKEN_URL = "http://api-cn.ronghub.com/user/getToken.json";
     //Key
-    public static final String CLOUD_KEY = "mgb7ka1nmexkg";
-    public static final String CLOUD_SECRET = "jz9dNfjFhBJ5Oz";
+    public static final String CLOUD_KEY = "mgb7ka1nmexkg";//使用了18670801569 注册的融云的账号 并得到的appKey
+    public static final String CLOUD_SECRET = "jz9dNfjFhBJ5Oz";//使用了18670801569 注册的融云的账号 并得到的appKey
 
     //ObjectName
     public static final String MSG_TEXT_NAME = "RC:TxtMsg";
