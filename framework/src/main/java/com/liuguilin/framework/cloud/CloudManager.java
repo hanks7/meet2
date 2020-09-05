@@ -14,7 +14,6 @@ import org.json.JSONObject;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Handler;
 
 import io.rong.calllib.IRongCallListener;
 import io.rong.calllib.IRongReceivedCallListener;
@@ -38,8 +37,8 @@ public class CloudManager {
     //Url
     public static final String TOKEN_URL = "http://api-cn.ronghub.com/user/getToken.json";
     //Key
-    public static final String CLOUD_KEY = "k51hidwqk4yeb";
-    public static final String CLOUD_SECRET = "os83U32SrAG";
+    public static final String CLOUD_KEY = "mgb7ka1nmexkg";
+    public static final String CLOUD_SECRET = "jz9dNfjFhBJ5Oz";
 
     //ObjectName
     public static final String MSG_TEXT_NAME = "RC:TxtMsg";
