@@ -39,7 +39,6 @@ public class Ugson {
         if (gson != null) {
             gsonString = gson.toJson(object);
         }
-        Ulog.i("toJson",gsonString);
         return gsonString;
     }
 
