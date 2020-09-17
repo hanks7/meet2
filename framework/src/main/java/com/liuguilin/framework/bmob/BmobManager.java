@@ -29,7 +29,8 @@ import cn.bmob.v3.listener.UploadFileListener;
  */
 public class BmobManager {
 
-    private static final String BMOB_SDK_ID = "f8efae5debf319071b44339cf51153fc";
+    //    private static final String BMOB_SDK_ID = "f8efae5debf319071b44339cf51153fc";//老师使用的id
+    private static final String BMOB_SDK_ID = "663874538c2989ac53dc8b8cc4808001";//自己申请的id
     private static final String BMOB_NEW_DOMAIN = "http://sdk.cilc.cloud/8/";
 
     private volatile static BmobManager mInstance = null;
