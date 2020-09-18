@@ -37,11 +37,11 @@ public class CloudManager {
     //Url
     public static final String TOKEN_URL = "http://api-cn.ronghub.com/user/getToken.json";
     //Key
-//    public static final String CLOUD_KEY = "mgb7ka1nmexkg";//使用了18670801569 注册的融云的账号 并得到的CLOUD_KEY
-//    public static final String CLOUD_SECRET = "jz9dNfjFhBJ5Oz";//使用了18670801569 注册的融云的账号 并得到的CLOUD_SECRET
+    public static final String CLOUD_KEY = "mgb7ka1nmexkg";//使用了18670801569 注册的融云的账号 并得到的CLOUD_KEY
+    public static final String CLOUD_SECRET = "jz9dNfjFhBJ5Oz";//使用了18670801569 注册的融云的账号 并得到的CLOUD_SECRET
 
-    public static final String CLOUD_KEY = "k51hidwqk4yeb";//慕课网教程中使用的CLOUD_KEY
-    public static final String CLOUD_SECRET = "os83U32SrAG";//慕课网教程中使用的CLOUD_SECRET
+//    public static final String CLOUD_KEY = "k51hidwqk4yeb";//慕课网教程中使用的CLOUD_KEY
+//    public static final String CLOUD_SECRET = "os83U32SrAG";//慕课网教程中使用的CLOUD_SECRET
 
     //ObjectName
     public static final String MSG_TEXT_NAME = "RC:TxtMsg";
