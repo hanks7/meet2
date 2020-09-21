@@ -31,7 +31,7 @@ public class LogUtils {
     public static void i(String text) {
         if (BuildConfig.LOG_DEBUG) {
             if (!TextUtils.isEmpty(text)) {
-                Log.i(BuildConfig.LOG_TAG, text);
+                Log.i(Ulog.TAG, text);
                 writeToFile(text);
             }
         }
@@ -40,7 +40,7 @@ public class LogUtils {
     public static void i(String tag,String text) {
         if (BuildConfig.LOG_DEBUG) {
             if (!TextUtils.isEmpty(text)) {
-                Log.i(BuildConfig.LOG_TAG,tag+" :"+ text);
+                Log.i(Ulog.TAG,tag+" :"+ text);
                 writeToFile(text);
             }
         }
@@ -49,7 +49,7 @@ public class LogUtils {
     public static void e(String text) {
         if (BuildConfig.LOG_DEBUG) {
             if (!TextUtils.isEmpty(text)) {
-                Log.e(BuildConfig.LOG_TAG, text);
+                Log.e(Ulog.TAG, text);
                 writeToFile(text);
             }
         }
