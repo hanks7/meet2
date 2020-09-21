@@ -94,22 +94,22 @@ public class CloudManager {
      * @param token
      */
     public void connect(String token) {
-        LogUtils.i("connect");
+        LogUtils.i("connect-","开始");
         RongIMClient.connect(token, new RongIMClient.ConnectCallback() {
             @Override
             public void onTokenIncorrect() {
-                LogUtils.e("Token Error");
+                LogUtils.e("connect-onTokenIncorrect","Token Error");
             }
 
             @Override
             public void onSuccess(String s) {
-                LogUtils.e("连接成功：" + s);
+                LogUtils.i("connect-onSuccess",s);
                 sendConnectStatus(true);
             }
 
             @Override
             public void onError(RongIMClient.ErrorCode errorCode) {
-                LogUtils.e("连接失败：" + errorCode);
+                LogUtils.e("connect-连接失败：" , errorCode);
                 sendConnectStatus(false);
             }
         });
@@ -188,7 +188,7 @@ public class CloudManager {
         @Override
         public void onError(Message message, RongIMClient.ErrorCode errorCode) {
             // 消息发送失败的回调
-            LogUtils.e("sendMessage onError:" + errorCode);
+            LogUtils.e("sendMessage onError:" , errorCode);
         }
     };
 

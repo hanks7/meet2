@@ -1,10 +1,6 @@
 package com.liuguilin.framework.utils;
 
 import android.os.Environment;
-import android.text.TextUtils;
-import android.util.Log;
-
-import com.liuguilin.framework.BuildConfig;
 
 import java.io.BufferedWriter;
 import java.io.File;
@@ -28,31 +24,24 @@ public class LogUtils {
     private static SimpleDateFormat mSimpleDateFormat =
             new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
-    public static void i(String text) {
-        if (BuildConfig.LOG_DEBUG) {
-            if (!TextUtils.isEmpty(text)) {
-                Log.i(Ulog.TAG, text);
-                writeToFile(text);
-            }
-        }
+    public static void i(Object text) {
+        Ulog.i(text);
+        writeToFile(text + "");
     }
 
-    public static void i(String tag,String text) {
-        if (BuildConfig.LOG_DEBUG) {
-            if (!TextUtils.isEmpty(text)) {
-                Log.i(Ulog.TAG,tag+" :"+ text);
-                writeToFile(text);
-            }
-        }
+    public static void i(String tag, Object text) {
+        Ulog.i(tag, text);
+        writeToFile(text + "");
     }
 
-    public static void e(String text) {
-        if (BuildConfig.LOG_DEBUG) {
-            if (!TextUtils.isEmpty(text)) {
-                Log.e(Ulog.TAG, text);
-                writeToFile(text);
-            }
-        }
+    public static void e(Object tag, Object text) {
+        Ulog.i(tag, text);
+        writeToFile(text + "");
+    }
+
+    public static void e(Object text) {
+        Ulog.i("error", text);
+        writeToFile(text + "");
     }
 
     /**
@@ -88,10 +77,10 @@ public class LogUtils {
             bufferedWriter.write(log);
         } catch (FileNotFoundException e) {
             e.printStackTrace();
-            e(e.toString());
+            e("FileNotFoundException", e.toString());
         } catch (IOException e) {
             e.printStackTrace();
-            e(e.toString());
+            e("IOException", e.toString());
         } finally {
             if (bufferedWriter != null) {
                 try {
