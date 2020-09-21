@@ -23,6 +23,7 @@ allprojects {
         jcenter()
         maven { url rootProject.ext.maven["bmobUrl"] }
         maven { url rootProject.ext.maven["jitpack"] }
+        maven {url  "https://dl.bintray.com/rongcloud/maven"}
     }
 }
 

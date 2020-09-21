@@ -16,6 +16,8 @@
         tools:ignore="GoogleAppIndexingWarning"
         tools:replace="android:allowBackup">
 
+
+
         <!--渠道 ${APP_CHANNEL_VALUE} -->
         <meta-data
             android:name="APP_CHANNEL"

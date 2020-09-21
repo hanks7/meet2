@@ -85,7 +85,7 @@ public class CloudManager {
      * @param mContext
      */
     public void initCloud(Context mContext) {
-        RongIMClient.init(mContext);
+        RongIMClient.init(mContext,"mgb7ka1nmexkg");
     }
 
     /**
@@ -94,22 +94,22 @@ public class CloudManager {
      * @param token
      */
     public void connect(String token) {
-        LogUtils.i("connect-","开始");
+        LogUtils.i("connect-", "开始");
         RongIMClient.connect(token, new RongIMClient.ConnectCallback() {
             @Override
             public void onTokenIncorrect() {
-                LogUtils.e("connect-onTokenIncorrect","Token Error");
+                LogUtils.e("connect-onTokenIncorrect", "Token Error");
             }
 
             @Override
             public void onSuccess(String s) {
-                LogUtils.i("connect-onSuccess",s);
+                LogUtils.i("connect-onSuccess", s);
                 sendConnectStatus(true);
             }
 
             @Override
             public void onError(RongIMClient.ErrorCode errorCode) {
-                LogUtils.e("connect-连接失败：" , errorCode);
+                LogUtils.e("connect-连接失败：", errorCode);
                 sendConnectStatus(false);
             }
         });
@@ -188,7 +188,7 @@ public class CloudManager {
         @Override
         public void onError(Message message, RongIMClient.ErrorCode errorCode) {
             // 消息发送失败的回调
-            LogUtils.e("sendMessage onError:" , errorCode);
+            LogUtils.e("sendMessage onError:", errorCode);
         }
     };
 
@@ -331,7 +331,7 @@ public class CloudManager {
         if (!isVoIPEnabled(mContext)) {
             return;
         }
-        if(!isConnect()){
+        if (!isConnect()) {
             Toast.makeText(mContext, mContext.getString(R.string.text_server_status), Toast.LENGTH_SHORT).show();
             return;
         }
@@ -461,10 +461,10 @@ public class CloudManager {
      * @param listener
      */
     public void setVoIPCallListener(IRongCallListener listener) {
-        if (null == listener) {
-            return;
+        if (null == listener && RongCallClient.getInstance() != null) {
+            RongCallClient.getInstance().setVoIPCallListener(listener);
         }
-        RongCallClient.getInstance().setVoIPCallListener(listener);
+
     }
 
     /**

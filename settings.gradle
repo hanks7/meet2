@@ -1,1 +1,1 @@
-include ':app', ':framework', ':IMLib', ':CallLib'
+include ':app', ':framework'

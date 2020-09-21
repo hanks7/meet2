@@ -8,7 +8,6 @@ import android.media.MediaPlayer;
 import android.os.Handler;
 import android.os.IBinder;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.Gravity;
 import android.view.MotionEvent;
 import android.view.SurfaceView;
@@ -18,7 +17,6 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-
 
 import com.google.gson.Gson;
 import com.imooc.meet.MainActivity;
@@ -46,6 +44,7 @@ import com.liuguilin.framework.utils.TimeUtils;
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
 
+import java.util.HashMap;
 import java.util.List;
 
 import cn.bmob.v3.exception.BmobException;
@@ -57,7 +56,6 @@ import io.rong.calllib.IRongCallListener;
 import io.rong.calllib.IRongReceivedCallListener;
 import io.rong.calllib.RongCallCommon;
 import io.rong.calllib.RongCallSession;
-import io.rong.imlib.RongIMClient;
 import io.rong.imlib.model.Message;
 import io.rong.message.ImageMessage;
 import io.rong.message.LocationMessage;
@@ -580,6 +578,26 @@ public class CloudService extends Service implements View.OnClickListener {
             //收到视频第一帧
             @Override
             public void onFirstRemoteVideoFrame(String s, int i, int i1) {
+
+            }
+
+            @Override
+            public void onAudioLevelSend(String s) {
+
+            }
+
+            @Override
+            public void onAudioLevelReceive(HashMap<String, String> hashMap) {
+
+            }
+
+            @Override
+            public void onRemoteUserPublishVideoStream(String s, String s1, String s2, SurfaceView surfaceView) {
+
+            }
+
+            @Override
+            public void onRemoteUserUnpublishVideoStream(String s, String s1, String s2) {
 
             }
         });
