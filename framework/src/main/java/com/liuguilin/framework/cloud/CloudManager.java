@@ -85,7 +85,7 @@ public class CloudManager {
      * @param mContext
      */
     public void initCloud(Context mContext) {
-        RongIMClient.init(mContext,"mgb7ka1nmexkg");
+        RongIMClient.init(mContext,CLOUD_KEY);
     }
 
     /**
