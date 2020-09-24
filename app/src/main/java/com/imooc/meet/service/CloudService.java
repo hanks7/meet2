@@ -40,6 +40,7 @@ import com.liuguilin.framework.utils.CommonUtils;
 import com.liuguilin.framework.utils.LogUtils;
 import com.liuguilin.framework.utils.SpUtils;
 import com.liuguilin.framework.utils.TimeUtils;
+import com.liuguilin.framework.utils.Ulog;
 
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
@@ -56,6 +57,7 @@ import io.rong.calllib.IRongCallListener;
 import io.rong.calllib.IRongReceivedCallListener;
 import io.rong.calllib.RongCallCommon;
 import io.rong.calllib.RongCallSession;
+import io.rong.imlib.RongIMClient;
 import io.rong.imlib.model.Message;
 import io.rong.message.ImageMessage;
 import io.rong.message.LocationMessage;
@@ -336,16 +338,20 @@ public class CloudService extends Service implements View.OnClickListener {
         //连接服务
         CloudManager.getInstance().connect(token);
         //接收消息
-        CloudManager.getInstance().setOnReceiveMessageListener((message, i) -> {
-            parsingImMessage(message);
-            return false;
+        CloudManager.getInstance().setOnReceiveMessageListener(new RongIMClient.OnReceiveMessageListener() {
+            @Override
+            public boolean onReceived(Message message, int i) {
+                Ulog.i("message",message);
+                parsingImMessage(message);
+                return false;
+            }
         });
 
         //监听通话
         CloudManager.getInstance().setReceivedCallListener(new IRongReceivedCallListener() {
             @Override
             public void onReceivedCall(RongCallSession rongCallSession) {
-                LogUtils.i("rongCallSession");
+                LogUtils.i("rongCallSession","开始接受消息");
 
                 //检查设备可用
                 if (!CloudManager.getInstance().isVoIPEnabled(CloudService.this)) {
@@ -609,14 +615,14 @@ public class CloudService extends Service implements View.OnClickListener {
      * @param message
      */
     private void parsingImMessage(Message message) {
-        LogUtils.i("message:" + message);
+        LogUtils.i("parsingImMessage-message" , message);
         String objectName = message.getObjectName();
         //文本消息
         if (objectName.equals(CloudManager.MSG_TEXT_NAME)) {
             //获取消息主体
             TextMessage textMessage = (TextMessage) message.getContent();
             String content = textMessage.getContent();
-            LogUtils.i("content:" + content);
+            LogUtils.i("parsingImMessage-content" , content);
             TextBean textBean = null;
             try {
                 textBean = new Gson().fromJson(content, TextBean.class);
@@ -636,13 +642,14 @@ public class CloudService extends Service implements View.OnClickListener {
             if (textBean.getType().equals(CloudManager.TYPE_TEXT)) {
                 MessageEvent event = new MessageEvent(EventManager.FLAG_SEND_TEXT);
                 event.setUserId(message.getSenderUserId());
+                event.setText(textBean.getMsg());
                 EventManager.post(event);
                 pushSystem(message.getSenderUserId(), 1, 0, 0, textBean.getMsg());
                 //添加好友消息
             } else if (textBean.getType().equals(CloudManager.TYPE_ADD_FRIEND)) {
                 //存入数据库 Bmob RongCloud 都没有提供存储方法
                 //使用另外的方法来实现 存入本地数据库
-                LogUtils.i("添加好友消息");
+                LogUtils.i("parsingImMessage","添加好友消息");
                 saveNewFriend(textBean.getMsg(), message.getSenderUserId());
                 //查询数据库如果有重复的则不添加
                 //防止漏了消息，暂时对消息不过滤处理
@@ -688,7 +695,7 @@ public class CloudService extends Service implements View.OnClickListener {
                 ImageMessage imageMessage = (ImageMessage) message.getContent();
                 String url = imageMessage.getRemoteUri().toString();
                 if (!TextUtils.isEmpty(url)) {
-                    LogUtils.i("url:" + url);
+                    LogUtils.i("parsingImMessage-url:" + url);
                     MessageEvent event = new MessageEvent(EventManager.FLAG_SEND_IMAGE);
                     event.setImgUrl(url);
                     event.setUserId(message.getSenderUserId());
@@ -701,7 +708,7 @@ public class CloudService extends Service implements View.OnClickListener {
             }
         } else if (objectName.equals(CloudManager.MSG_LOCATION_NAME)) {
             LocationMessage locationMessage = (LocationMessage) message.getContent();
-            LogUtils.e("locationMessage:" + locationMessage.toString());
+            LogUtils.e("parsingImMessage-locationMessage:" + locationMessage.toString());
             MessageEvent event = new MessageEvent(EventManager.FLAG_SEND_LOCATION);
             event.setLa(locationMessage.getLat());
             event.setLo(locationMessage.getLng());

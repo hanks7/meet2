@@ -33,7 +33,7 @@ public class Ulog {
     /**
      * 编码名称
      */
-    public static final String charsetName = "gbk";
+    public static final String charsetName = "utf-8";
 
     public static void i(Object content) {
         Log.i(TAG, content + "");

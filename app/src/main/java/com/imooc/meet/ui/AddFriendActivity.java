@@ -172,7 +172,7 @@ public class AddFriendActivity extends BaseBackActivity implements View.OnClickL
 
         //2.过滤自己
         String phoneNumber = BmobManager.getInstance().getUser().getMobilePhoneNumber();
-        LogUtils.i("phoneNumber:" + phoneNumber);
+        LogUtils.i("phoneNumber:" , phoneNumber);
         if (phone.equals(phoneNumber)) {
             Toast.makeText(this, getString(R.string.text_add_friend_no_me), Toast.LENGTH_SHORT).show();
             return;

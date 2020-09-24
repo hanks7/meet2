@@ -392,7 +392,7 @@ public class CloudManager {
      * @param callId
      */
     public void hangUpCall(String callId) {
-        LogUtils.i("hangUpCall:" + callId);
+        LogUtils.i("hangUpCall" , callId);
         RongCallClient.getInstance().hangUpCall(callId);
     }
 

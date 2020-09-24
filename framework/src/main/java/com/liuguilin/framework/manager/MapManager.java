@@ -124,7 +124,7 @@ public class MapManager {
         String url = "https://restapi.amap.com/v3/staticmap?location=" + lo + "," + la +
                 "&zoom=17&scale=2&size=150*150&markers=mid,,A:" + lo + ","
                 + la + "&key=" + "389bc08b815e3146bfd1e45fd7f47fc5";
-        LogUtils.i("url:" + url);
+        LogUtils.i("url" , url);
         return url;
     }
 }

@@ -31,12 +31,12 @@ public class LogUtils {
 
     public static void i(String tag, Object text) {
         Ulog.i(tag, text);
-        writeToFile(text + "");
+        writeToFile(tag + ":" + text);
     }
 
     public static void e(Object tag, Object text) {
         Ulog.i(tag, text);
-        writeToFile(text + "");
+        writeToFile(tag + ":" + text);
     }
 
     public static void e(Object text) {
