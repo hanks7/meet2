@@ -6,19 +6,15 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
-import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
-import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
-
-import androidx.annotation.Nullable;
 
 import com.imooc.meet.R;
 import com.liuguilin.framework.base.BaseBackActivity;
@@ -66,14 +62,16 @@ public class FirstUploadActivity extends BaseBackActivity implements View.OnClic
     private LodingView mLodingView;
     private DialogView mPhotoSelectView;
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_first_upload);
 
-        initView();
+    @Override
+    protected int getLayoutId() {
+        return R.layout.activity_first_upload;
     }
 
+    @Override
+    protected void init() {
+        initView();
+    }
     /**
      * 初始化View
      */

@@ -4,7 +4,6 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
-import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -162,11 +161,14 @@ public class ChatActivity extends BaseBackActivity implements View.OnClickListen
     //图片文件
     private File uploadFile = null;
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_chat);
 
+    @Override
+    protected int getLayoutId() {
+        return R.layout.activity_chat;
+    }
+
+    @Override
+    protected void init() {
         initView();
     }
 

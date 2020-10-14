@@ -5,7 +5,6 @@ import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Bitmap;
-import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -21,20 +20,16 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import androidx.recyclerview.widget.DividerItemDecoration;
-import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.SimpleItemAnimator;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
-import com.bumptech.glide.Glide;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.imooc.meet.R;
 import com.imooc.meet.ui.ImagePreviewActivity;
 import com.imooc.meet.ui.PushSquareActivity;
 import com.imooc.meet.ui.UserInfoActivity;
-import com.liuguilin.framework.utils.LogUtils;
-import com.liuguilin.framework.view.VideoJzvdStd;
 import com.liuguilin.framework.adapter.CommonAdapter;
 import com.liuguilin.framework.adapter.CommonViewHolder;
 import com.liuguilin.framework.base.BaseFragment;
@@ -46,7 +41,10 @@ import com.liuguilin.framework.helper.WindowHelper;
 import com.liuguilin.framework.manager.MediaPlayerManager;
 import com.liuguilin.framework.utils.AnimUtils;
 import com.liuguilin.framework.utils.CommonUtils;
+import com.liuguilin.framework.utils.Density;
+import com.liuguilin.framework.utils.LogUtils;
 import com.liuguilin.framework.utils.TimeUtils;
+import com.liuguilin.framework.view.VideoJzvdStd;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -56,10 +54,8 @@ import java.util.List;
 import cn.bmob.v3.exception.BmobException;
 import cn.bmob.v3.listener.FindListener;
 import io.reactivex.Observable;
-import io.reactivex.ObservableEmitter;
 import io.reactivex.ObservableOnSubscribe;
 import io.reactivex.android.schedulers.AndroidSchedulers;
-import io.reactivex.functions.Consumer;
 import io.reactivex.schedulers.Schedulers;
 
 /**
@@ -132,6 +128,7 @@ public class SquareFragment extends BaseFragment implements View.OnClickListener
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        Density.setDensity(getActivity().getApplication(), getActivity());
         View view = inflater.inflate(R.layout.fragment_square, null);
         initView(view);
         return view;

@@ -5,10 +5,11 @@ import android.content.Intent;
 import android.content.res.AssetFileDescriptor;
 import android.graphics.drawable.AnimationDrawable;
 import android.media.MediaPlayer;
-import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import androidx.viewpager.widget.ViewPager;
 
 import com.imooc.meet.R;
 import com.liuguilin.framework.base.BasePageAdapter;
@@ -18,8 +19,6 @@ import com.liuguilin.framework.utils.AnimUtils;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import androidx.viewpager.widget.ViewPager;
 
 /**
  * FileName: GuideActivity
@@ -58,11 +57,15 @@ public class GuideActivity extends BaseUIActivity implements View.OnClickListene
 
     private ObjectAnimator mAnim;
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_guide);
 
+
+    @Override
+    protected int getLayoutId() {
+        return R.layout.activity_guide;
+    }
+
+    @Override
+    protected void init() {
         initView();
     }
 

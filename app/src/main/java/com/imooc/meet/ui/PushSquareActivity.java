@@ -3,7 +3,6 @@ package com.imooc.meet.ui;
 import android.app.Activity;
 import android.content.Intent;
 import android.net.Uri;
-import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
@@ -15,8 +14,6 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
-
-import androidx.annotation.Nullable;
 
 import com.imooc.meet.R;
 import com.liuguilin.framework.base.BaseBackActivity;
@@ -67,14 +64,17 @@ public class PushSquareActivity extends BaseBackActivity implements View.OnClick
 
     private LodingView mLodingView;
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_push_square);
 
-        initView();
+
+    @Override
+    protected int getLayoutId() {
+        return R.layout.activity_push_square;
     }
 
+    @Override
+    protected void init() {
+        initView();
+    }
     private void initView() {
 
         mLodingView = new LodingView(this);

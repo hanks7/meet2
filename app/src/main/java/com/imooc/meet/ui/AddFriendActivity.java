@@ -68,6 +68,16 @@ public class AddFriendActivity extends BaseBackActivity implements View.OnClickL
         initView();
     }
 
+    @Override
+    protected int getLayoutId() {
+        return R.layout.activity_add_friend;
+    }
+
+    @Override
+    protected void init() {
+        initView();
+    }
+
     /**
      * 初始化View
      */

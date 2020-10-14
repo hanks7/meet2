@@ -1,19 +1,10 @@
 package com.imooc.meet.ui;
 
-import android.content.ContentValues;
-import android.content.Intent;
 import android.graphics.Bitmap;
-import android.net.Uri;
-import android.os.Bundle;
-import android.os.Environment;
-import android.provider.MediaStore;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
-
-import androidx.cardview.widget.CardView;
 
 import com.imooc.meet.R;
 import com.liuguilin.framework.base.BaseBackActivity;
@@ -21,14 +12,8 @@ import com.liuguilin.framework.bmob.BmobManager;
 import com.liuguilin.framework.bmob.IMUser;
 import com.liuguilin.framework.helper.FileHelper;
 import com.liuguilin.framework.helper.GlideHelper;
-import com.liuguilin.framework.utils.LogUtils;
 import com.liuguilin.framework.view.LodingView;
 import com.uuzuche.lib_zxing.activity.CodeUtils;
-
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
 
 /**
  * FileName: ShareImgActivity
@@ -58,14 +43,16 @@ public class ShareImgActivity extends BaseBackActivity implements View.OnClickLi
 
     private LodingView mLodingView;
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_share_img);
 
-        initView();
+    @Override
+    protected int getLayoutId() {
+        return R.layout.activity_share_img;
     }
 
+    @Override
+    protected void init() {
+        initView();
+    }
     private void initView() {
 
         mLodingView = new LodingView(this);

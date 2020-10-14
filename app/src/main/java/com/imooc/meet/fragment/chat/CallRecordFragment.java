@@ -20,6 +20,7 @@ import com.liuguilin.framework.bmob.IMUser;
 import com.liuguilin.framework.db.CallRecord;
 import com.liuguilin.framework.db.LitePalHelper;
 import com.liuguilin.framework.utils.CommonUtils;
+import com.liuguilin.framework.utils.Density;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -54,6 +55,7 @@ public class CallRecordFragment extends BaseFragment implements SwipeRefreshLayo
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        Density.setDensity(getActivity().getApplication(), getActivity());
         View view = inflater.inflate(R.layout.fragment_call_record, null);
         initView(view);
         return view;

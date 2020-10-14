@@ -1,7 +1,5 @@
 package com.imooc.meet.ui;
 
-import android.os.Bundle;
-import android.view.View;
 import android.widget.Toast;
 
 import androidx.recyclerview.widget.GridLayoutManager;
@@ -30,14 +28,16 @@ public class ChatThemeActivity extends BaseBackActivity {
     private List<Integer> mThemeList = new ArrayList<>();
     private CommonAdapter<Integer> mThemeAdapter;
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_chat_theme);
 
-        initView();
+    @Override
+    protected int getLayoutId() {
+        return R.layout.activity_chat_theme;
     }
 
+    @Override
+    protected void init() {
+        initView();
+    }
     private void initView() {
 
         mThemeList.add(R.drawable.img_chat_bg_1);

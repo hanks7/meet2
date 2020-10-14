@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Build;
-import android.os.Bundle;
 import android.provider.Settings;
 import android.view.Gravity;
 import android.view.MenuItem;
@@ -26,7 +25,6 @@ import com.liuguilin.framework.manager.DialogManager;
 import com.liuguilin.framework.utils.LanguaueUtils;
 import com.liuguilin.framework.utils.SpUtils;
 import com.liuguilin.framework.view.DialogView;
-
 
 import cn.bmob.v3.BmobUser;
 
@@ -60,14 +58,16 @@ public class SettingActivity extends BaseBackActivity implements View.OnClickLis
 
     private UpdateHelper mUpdateHelper;
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_setting);
 
-        initView();
+    @Override
+    protected int getLayoutId() {
+        return R.layout.activity_setting;
     }
 
+    @Override
+    protected void init() {
+        initView();
+    }
     private void initView() {
 
         sw_app_tips = (Switch) findViewById(R.id.sw_app_tips);

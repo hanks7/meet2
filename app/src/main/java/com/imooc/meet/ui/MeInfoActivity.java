@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
-import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.Gravity;
 import android.view.Menu;
@@ -36,7 +35,6 @@ import com.liuguilin.framework.view.DialogView;
 import com.liuguilin.framework.view.LodingView;
 
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -125,11 +123,14 @@ public class MeInfoActivity extends BaseBackActivity implements View.OnClickList
     //加载View
     private LodingView mLodingView;
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_me_info);
 
+    @Override
+    protected int getLayoutId() {
+        return R.layout.activity_me_info;
+    }
+
+    @Override
+    protected void init() {
         initView();
 
         initPhotoDialog();
@@ -140,7 +141,6 @@ public class MeInfoActivity extends BaseBackActivity implements View.OnClickList
         initHobbyDialog();
         initStatusDialog();
     }
-
     /**
      * 状态选择
      */

@@ -22,6 +22,7 @@ import com.liuguilin.framework.cloud.CloudManager;
 import com.liuguilin.framework.event.EventManager;
 import com.liuguilin.framework.event.MessageEvent;
 import com.liuguilin.framework.helper.GlideHelper;
+import com.liuguilin.framework.utils.Density;
 import com.liuguilin.framework.utils.LogUtils;
 
 import org.greenrobot.eventbus.Subscribe;
@@ -50,6 +51,7 @@ public class MeFragment extends BaseFragment implements View.OnClickListener {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        Density.setDensity(getActivity().getApplication(), getActivity());
         View view = inflater.inflate(R.layout.fragment_me, null);
         initView(view);
         return view;
@@ -79,7 +81,7 @@ public class MeFragment extends BaseFragment implements View.OnClickListener {
 
         //监听连接状态
         CloudManager.getInstance().setConnectionStatusListener(connectionStatus -> {
-            if(isAdded()){
+            if (isAdded()) {
                 if (null != connectionStatus) {
                     LogUtils.i("connectionStatus:" + connectionStatus);
                     if (connectionStatus == RongIMClient.ConnectionStatusListener.ConnectionStatus.CONNECTED) {

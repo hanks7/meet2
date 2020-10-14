@@ -3,7 +3,6 @@ package com.imooc.meet.ui;
 import android.app.Activity;
 import android.content.Intent;
 import android.net.Uri;
-import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
@@ -53,14 +52,16 @@ public class ChatInfoActivity extends BaseBackActivity implements View.OnClickLi
         mActivity.startActivityForResult(intent, requestCode);
     }
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_chat_info);
 
-        initView();
+    @Override
+    protected int getLayoutId() {
+        return R.layout.activity_chat_info;
     }
 
+    @Override
+    protected void init() {
+        initView();
+    }
     private void initView() {
 
         initDeleteDialog();

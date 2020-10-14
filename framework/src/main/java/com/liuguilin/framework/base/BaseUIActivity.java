@@ -9,10 +9,10 @@ import com.liuguilin.framework.utils.SystemUI;
  * Founder: LiuGuiLin
  * Profile: UI 基类
  */
-public class BaseUIActivity extends BaseActivity {
+public abstract class BaseUIActivity extends BaseActivity {
 
     @Override
-    protected void onCreate( Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         SystemUI.fixSystemUI(this);

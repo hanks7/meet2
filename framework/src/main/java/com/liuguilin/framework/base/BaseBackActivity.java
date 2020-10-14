@@ -10,7 +10,7 @@ import android.view.MenuItem;
  * Founder: LiuGuiLin
  * Profile: 有返回键的基类
  */
-public class BaseBackActivity extends BaseActivity {
+public abstract class BaseBackActivity extends BaseActivity {
 
     @Override
     protected void onCreate( Bundle savedInstanceState) {

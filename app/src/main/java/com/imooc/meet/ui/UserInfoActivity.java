@@ -2,12 +2,10 @@ package com.imooc.meet.ui;
 
 import android.content.Context;
 import android.content.Intent;
-import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -37,7 +35,6 @@ import java.util.List;
 import cn.bmob.v3.exception.BmobException;
 import cn.bmob.v3.listener.FindListener;
 import de.hdodenhof.circleimageview.CircleImageView;
-import io.rong.calllib.RongCallCommon;
 
 /**
  * FileName: UserInfoActivity
@@ -107,13 +104,14 @@ public class UserInfoActivity extends BaseUIActivity implements View.OnClickList
     private IMUser imUser;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_user_info);
-
-        initView();
+    protected int getLayoutId() {
+        return R.layout.activity_user_info;
     }
 
+    @Override
+    protected void init() {
+        initView();
+    }
     private void initView() {
 
         initAddFriendDialog();

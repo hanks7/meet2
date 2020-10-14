@@ -1,6 +1,5 @@
 package com.imooc.meet.ui;
 
-import android.os.Bundle;
 import android.view.View;
 import android.widget.Switch;
 import android.widget.Toast;
@@ -43,14 +42,16 @@ public class PrivateSetActivity extends BaseBackActivity implements View.OnClick
 
     private LodingView mLodingView;
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_private_set);
 
-        initView();
+    @Override
+    protected int getLayoutId() {
+        return R.layout.activity_private_set;
     }
 
+    @Override
+    protected void init() {
+        initView();
+    }
     private void initView() {
 
         mLodingView = new LodingView(this);

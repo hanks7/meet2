@@ -24,6 +24,7 @@ import com.liuguilin.framework.event.EventManager;
 import com.liuguilin.framework.event.MessageEvent;
 import com.liuguilin.framework.gson.TextBean;
 import com.liuguilin.framework.utils.CommonUtils;
+import com.liuguilin.framework.utils.Density;
 import com.liuguilin.framework.utils.LogUtils;
 
 import org.greenrobot.eventbus.Subscribe;
@@ -55,6 +56,7 @@ public class ChatRecordFragment extends BaseFragment implements SwipeRefreshLayo
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        Density.setDensity(getActivity().getApplication(), getActivity());
         View view = inflater.inflate(R.layout.fragment_chat_record, null);
         initView(view);
         return view;
@@ -79,9 +81,9 @@ public class ChatRecordFragment extends BaseFragment implements SwipeRefreshLayo
                 viewHolder.setText(R.id.tv_content, model.getEndMsg());
                 viewHolder.setText(R.id.tv_time, model.getTime());
 
-                if(model.getUnReadSize() == 0){
+                if (model.getUnReadSize() == 0) {
                     viewHolder.getView(R.id.tv_un_read).setVisibility(View.GONE);
-                }else{
+                } else {
                     viewHolder.getView(R.id.tv_un_read).setVisibility(View.VISIBLE);
                     viewHolder.setText(R.id.tv_un_read, model.getUnReadSize() + "");
                 }
@@ -90,7 +92,7 @@ public class ChatRecordFragment extends BaseFragment implements SwipeRefreshLayo
                     @Override
                     public void onClick(View v) {
                         ChatActivity.startActivity(getActivity(),
-                                model.getUserId(),model.getNickName(),model.getUrl());
+                                model.getUserId(), model.getNickName(), model.getUrl());
                     }
                 });
             }
@@ -156,10 +158,10 @@ public class ChatRecordFragment extends BaseFragment implements SwipeRefreshLayo
                                         }
                                         mChatRecordAdapter.notifyDataSetChanged();
 
-                                        if(mList.size() > 0){
+                                        if (mList.size() > 0) {
                                             item_empty_view.setVisibility(View.GONE);
                                             mChatRecordView.setVisibility(View.VISIBLE);
-                                        }else{
+                                        } else {
                                             item_empty_view.setVisibility(View.VISIBLE);
                                             mChatRecordView.setVisibility(View.GONE);
                                         }
@@ -168,7 +170,7 @@ public class ChatRecordFragment extends BaseFragment implements SwipeRefreshLayo
                             }
                         });
                     }
-                }else{
+                } else {
                     mChatRecordRefreshLayout.setRefreshing(false);
                     item_empty_view.setVisibility(View.VISIBLE);
                     mChatRecordView.setVisibility(View.GONE);

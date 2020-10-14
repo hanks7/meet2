@@ -18,6 +18,7 @@ import com.imooc.meet.fragment.chat.AllFriendFragment;
 import com.imooc.meet.fragment.chat.CallRecordFragment;
 import com.imooc.meet.fragment.chat.ChatRecordFragment;
 import com.liuguilin.framework.base.BaseFragment;
+import com.liuguilin.framework.utils.Density;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -41,6 +42,7 @@ public class ChatFragment extends BaseFragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        Density.setDensity(getActivity().getApplication(), getActivity());
         View view = inflater.inflate(R.layout.fragment_chat, null);
         initView(view);
         return view;

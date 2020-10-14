@@ -1,7 +1,6 @@
 package com.imooc.meet.ui;
 
 import android.database.Cursor;
-import android.os.Bundle;
 import android.provider.ContactsContract;
 import android.view.View;
 
@@ -50,14 +49,16 @@ public class ContactFirendActivity extends BaseBackActivity {
     private CommonAdapter<AddFriendModel> mContactAdapter;
     private List<AddFriendModel> mList = new ArrayList<>();
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_contact_friend);
 
-        initView();
+    @Override
+    protected int getLayoutId() {
+        return R.layout.activity_contact_friend;
     }
 
+    @Override
+    protected void init() {
+        initView();
+    }
     private void initView() {
         mContactView = (RecyclerView) findViewById(R.id.mContactView);
         mContactView.setLayoutManager(new LinearLayoutManager(this));

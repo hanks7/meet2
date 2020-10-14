@@ -1,7 +1,6 @@
 package com.imooc.meet.ui;
 
 import android.content.Intent;
-import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
@@ -13,12 +12,9 @@ import com.imooc.meet.R;
 import com.liuguilin.framework.base.BaseBackActivity;
 import com.liuguilin.framework.bmob.BmobManager;
 import com.liuguilin.framework.bmob.IMUser;
-import com.liuguilin.framework.entity.Constants;
-import com.liuguilin.framework.event.EventManager;
 import com.liuguilin.framework.helper.ActivityHelper;
 import com.liuguilin.framework.manager.KeyWordManager;
 import com.liuguilin.framework.utils.LogUtils;
-import com.liuguilin.framework.utils.SpUtils;
 
 import cn.bmob.v3.exception.BmobException;
 import cn.bmob.v3.listener.SaveListener;
@@ -36,14 +32,16 @@ public class TestLoginActivity extends BaseBackActivity implements View.OnClickL
     private EditText et_password;
     private Button btn_login;
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_test_login);
 
-        initView();
+    @Override
+    protected int getLayoutId() {
+        return R.layout.activity_test_login;
     }
 
+    @Override
+    protected void init() {
+        initView();
+    }
     private void initView() {
         et_phone = (EditText) findViewById(R.id.et_phone);
         et_password = (EditText) findViewById(R.id.et_password);

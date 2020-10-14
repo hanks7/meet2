@@ -1,6 +1,5 @@
 package com.imooc.meet.ui;
 
-import android.os.Bundle;
 import android.view.View;
 import android.view.ViewStub;
 
@@ -68,14 +67,16 @@ public class NewFriendActivity extends BaseBackActivity {
     //对方用户
     private IMUser imUser;
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_new_friend);
 
-        initView();
+    @Override
+    protected int getLayoutId() {
+        return R.layout.activity_new_friend;
     }
 
+    @Override
+    protected void init() {
+        initView();
+    }
     private void initView() {
 
         mNewFriendView = (RecyclerView) findViewById(R.id.mNewFriendView);

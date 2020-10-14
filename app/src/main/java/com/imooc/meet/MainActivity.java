@@ -2,7 +2,6 @@ package com.imooc.meet;
 
 import android.content.Intent;
 import android.graphics.Color;
-import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.DisplayMetrics;
 import android.view.View;
@@ -93,10 +92,14 @@ public class MainActivity extends BaseUIActivity implements View.OnClickListener
 
     private DialogView mUploadView;
 
+
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+    protected int getLayoutId() {
+        return R.layout.activity_main;
+    }
+
+    @Override
+    protected void init() {
 
         initView();
         test();

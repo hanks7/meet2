@@ -13,7 +13,6 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.liuguilin.framework.event.EventManager;
 import com.liuguilin.framework.event.MessageEvent;
-import com.liuguilin.framework.helper.ActivityHelper;
 import com.liuguilin.framework.utils.Density;
 import com.liuguilin.framework.utils.LanguaueUtils;
 import com.liuguilin.framework.utils.LogUtils;
@@ -30,7 +29,7 @@ import java.util.List;
  * Founder: LiuGuiLin
  * Profile: 基类
  */
-public class BaseActivity extends AppCompatActivity {
+public abstract class BaseActivity extends AppCompatActivity {
 
     //申请运行时权限的Code
     private static final int PERMISSION_REQUEST_CODE = 1000;
@@ -57,6 +56,34 @@ public class BaseActivity extends AppCompatActivity {
     private List<String> mPerNoList = new ArrayList<>();
 
     private OnPermissionsResult permissionsResult;
+
+    /**
+     * EventBus的步骤：
+     * 1.注册
+     * 2.声明注册方法 onEvent
+     * 3.发送事件
+     */
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+
+        super.onCreate(savedInstanceState);
+
+        Density.setDensity(getApplication(), this);
+        setContentView(getLayoutId());
+        init();
+        loadData();
+
+        LanguaueUtils.updateLanguaue(this);
+        EventManager.register(this);
+    }
+
+    protected abstract int getLayoutId();
+
+    protected abstract void init();
+
+    protected void loadData() {
+    }
 
     /**
      * 一个方法请求权限
@@ -172,23 +199,6 @@ public class BaseActivity extends AppCompatActivity {
         startActivityForResult(intent, PERMISSION_WINDOW_REQUEST_CODE);
     }
 
-    /**
-     * EventBus的步骤：
-     * 1.注册
-     * 2.声明注册方法 onEvent
-     * 3.发送事件
-     */
-
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        Density.setDensity(getApplication(), this);
-
-        ActivityHelper.getInstance().addActivity(this);
-
-        LanguaueUtils.updateLanguaue(this);
-        EventManager.register(this);
-    }
 
     @Override
     protected void onDestroy() {

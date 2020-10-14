@@ -13,11 +13,11 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.imooc.meet.R;
+import com.imooc.meet.adapter.CloudTagAdapter;
 import com.imooc.meet.model.StarModel;
 import com.imooc.meet.ui.AddFriendActivity;
 import com.imooc.meet.ui.QrCodeActivity;
 import com.imooc.meet.ui.UserInfoActivity;
-import com.imooc.meet.adapter.CloudTagAdapter;
 import com.liuguilin.framework.base.BaseFragment;
 import com.liuguilin.framework.bmob.BmobManager;
 import com.liuguilin.framework.bmob.IMUser;
@@ -27,7 +27,7 @@ import com.liuguilin.framework.event.MessageEvent;
 import com.liuguilin.framework.helper.PairFriendHelper;
 import com.liuguilin.framework.manager.DialogManager;
 import com.liuguilin.framework.utils.CommonUtils;
-import com.liuguilin.framework.utils.LanguaueUtils;
+import com.liuguilin.framework.utils.Density;
 import com.liuguilin.framework.utils.LogUtils;
 import com.liuguilin.framework.view.DialogView;
 import com.liuguilin.framework.view.LodingView;
@@ -81,6 +81,7 @@ public class StarFragment extends BaseFragment implements View.OnClickListener {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        Density.setDensity(getActivity().getApplication(), getActivity());
         View view = inflater.inflate(R.layout.fragment_star, null);
         initView(view);
         return view;
@@ -124,7 +125,7 @@ public class StarFragment extends BaseFragment implements View.OnClickListener {
         ll_love.setOnClickListener(this);
 
         //数据绑定
-        if(null != getActivity()){
+        if (null != getActivity()) {
             mCloudTagAdapter = new CloudTagAdapter(getActivity(), mStarList);
             mCloudView.setAdapter(mCloudTagAdapter);
         }
@@ -199,7 +200,7 @@ public class StarFragment extends BaseFragment implements View.OnClickListener {
                         }
                         LogUtils.i("done...");
                         //当请求数据已经加载出来的时候判断是否连接服务器
-                        if(CloudManager.getInstance().isConnect()){
+                        if (CloudManager.getInstance().isConnect()) {
                             //已经连接，并且星球加载，则隐藏
                             tv_connect_status.setVisibility(View.GONE);
                         }
@@ -243,25 +244,25 @@ public class StarFragment extends BaseFragment implements View.OnClickListener {
                 break;
             case R.id.ll_soul:
 
-                if(TextUtils.isEmpty(BmobManager.getInstance().getUser().getConstellation())){
+                if (TextUtils.isEmpty(BmobManager.getInstance().getUser().getConstellation())) {
                     tv_null_text.setText(getString(R.string.text_star_par_tips_1));
                     DialogManager.getInstance().show(mNullDialogView);
                     return;
                 }
 
-                if(BmobManager.getInstance().getUser().getAge() == 0){
+                if (BmobManager.getInstance().getUser().getAge() == 0) {
                     tv_null_text.setText(getString(R.string.text_star_par_tips_2));
                     DialogManager.getInstance().show(mNullDialogView);
                     return;
                 }
 
-                if(TextUtils.isEmpty(BmobManager.getInstance().getUser().getHobby())){
+                if (TextUtils.isEmpty(BmobManager.getInstance().getUser().getHobby())) {
                     tv_null_text.setText(getString(R.string.text_star_par_tips_3));
                     DialogManager.getInstance().show(mNullDialogView);
                     return;
                 }
 
-                if(TextUtils.isEmpty(BmobManager.getInstance().getUser().getStatus())){
+                if (TextUtils.isEmpty(BmobManager.getInstance().getUser().getStatus())) {
                     tv_null_text.setText(getString(R.string.text_star_par_tips_4));
                     DialogManager.getInstance().show(mNullDialogView);
                     return;

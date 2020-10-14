@@ -1,18 +1,18 @@
 package com.liuguilin.framework.utils;
 
-import android.app.Activity;
 import android.app.Application;
 import android.content.ComponentCallbacks;
+import android.content.Context;
 import android.content.res.Configuration;
 import android.util.DisplayMetrics;
 
 public class Density {
-    private static final float WIDTH = 412;//参考设备的宽，单位是dp   400dp 需要美工提供屏幕的宽度(单位dp)
+    private static final float WIDTH = 411.4f;//参考设备的宽，单位是dp   400dp 需要美工提供屏幕的宽度(单位dp)
 
     private static float appDensity;//表示屏幕密度
     private static float appScaleDensity; //字体缩放比例，默认appDensity
 
-    public static void setDensity(final Application application, Activity activity) {
+    public static void setDensity(final Application application, Context activity) {
         //获取当前app的屏幕显示信息
         DisplayMetrics displayMetrics = application.getResources().getDisplayMetrics();
         if (appDensity == 0) {

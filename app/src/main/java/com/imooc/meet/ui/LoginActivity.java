@@ -1,7 +1,6 @@
 package com.imooc.meet.ui;
 
 import android.content.Intent;
-import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.text.TextUtils;
@@ -11,7 +10,6 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.imooc.meet.BuildConfig;
 import com.imooc.meet.MainActivity;
 import com.imooc.meet.R;
 import com.liuguilin.framework.base.BaseUIActivity;
@@ -25,9 +23,7 @@ import com.liuguilin.framework.view.DialogView;
 import com.liuguilin.framework.view.LodingView;
 import com.liuguilin.framework.view.TouchPictureV;
 
-import cn.bmob.v3.Bmob;
 import cn.bmob.v3.exception.BmobException;
-import cn.bmob.v3.helper.ErrorCode;
 import cn.bmob.v3.listener.LogInListener;
 import cn.bmob.v3.listener.QueryListener;
 
@@ -80,14 +76,16 @@ public class LoginActivity extends BaseUIActivity implements View.OnClickListene
         }
     });
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_login);
 
-        initView();
+    @Override
+    protected int getLayoutId() {
+        return R.layout.activity_login;
     }
 
+    @Override
+    protected void init() {
+        initView();
+    }
     private void initView() {
 
         initDialogView();

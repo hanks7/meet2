@@ -2,7 +2,6 @@ package com.imooc.meet.ui;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.location.Location;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.Gravity;
@@ -93,14 +92,23 @@ public class LocationActivity extends BaseBackActivity implements View.OnClickLi
     private String IAddress;
 
     private int ITEM = -1;
+    Bundle savedInstanceState;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        this.savedInstanceState = savedInstanceState;
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_location);
+    }
 
+    @Override
+    protected int getLayoutId() {
+        return R.layout.activity_location;
+    }
+
+    @Override
+    protected void init() {
         initPoiView();
-        initView(savedInstanceState);
+        initView();
     }
 
     private void initPoiView() {
@@ -162,7 +170,7 @@ public class LocationActivity extends BaseBackActivity implements View.OnClickLi
         mConstellationnView.setAdapter(mPoiListAdapter);
     }
 
-    private void initView(Bundle savedInstanceState) {
+    private void initView() {
         mMapView = (MapView) findViewById(R.id.mMapView);
         et_search = (EditText) findViewById(R.id.et_search);
         iv_poi = (ImageView) findViewById(R.id.iv_poi);

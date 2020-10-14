@@ -1,11 +1,9 @@
 package com.imooc.meet.ui;
 
-import android.content.ContentResolver;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
-import android.provider.MediaStore;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -59,15 +57,17 @@ public class QrCodeActivity extends BaseUIActivity implements View.OnClickListen
     //是否打开闪光灯
     private boolean isOpenLight = false;
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_qrcode);
 
+    @Override
+    protected int getLayoutId() {
+        return R.layout.activity_qrcode;
+    }
+
+    @Override
+    protected void init() {
         initQrCode();
         initView();
     }
-
     /**
      * 初始化二维码
      */
