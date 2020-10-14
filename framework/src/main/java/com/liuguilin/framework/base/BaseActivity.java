@@ -9,9 +9,12 @@ import android.os.Bundle;
 import android.provider.Settings;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.liuguilin.framework.event.EventManager;
 import com.liuguilin.framework.event.MessageEvent;
 import com.liuguilin.framework.helper.ActivityHelper;
+import com.liuguilin.framework.utils.Density;
 import com.liuguilin.framework.utils.LanguaueUtils;
 import com.liuguilin.framework.utils.LogUtils;
 
@@ -20,8 +23,6 @@ import org.greenrobot.eventbus.ThreadMode;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import androidx.appcompat.app.AppCompatActivity;
 
 
 /**
@@ -181,6 +182,7 @@ public class BaseActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Density.setDensity(getApplication(), this);
 
         ActivityHelper.getInstance().addActivity(this);
 
@@ -197,7 +199,7 @@ public class BaseActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        LogUtils.i(  "ui-activity", "(" + getClass().getSimpleName() + ".java:0)");
+        LogUtils.i("ui-activity", "(" + getClass().getSimpleName() + ".java:0)");
     }
 
     @Subscribe(threadMode = ThreadMode.MAIN)

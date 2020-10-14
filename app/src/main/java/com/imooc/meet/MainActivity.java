@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.DisplayMetrics;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -111,9 +112,14 @@ public class MainActivity extends BaseUIActivity implements View.OnClickListener
             public void done(List<IMUser> list, BmobException e) {
                 Ugson.toJson(list);
                 Ulog.writeToFile("Bmob中存储的所有好友" + Ugson.toJson(list));
-
             }
         });
+
+        DisplayMetrics dm = new DisplayMetrics();
+        getWindowManager().getDefaultDisplay().getMetrics(dm);
+        int dpi = (int) (dm.density * 160);
+        Ulog.i("dpi", String.valueOf(dpi));
+
     }
 
     /**
