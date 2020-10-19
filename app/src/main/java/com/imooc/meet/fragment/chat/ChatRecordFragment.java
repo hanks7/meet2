@@ -110,6 +110,13 @@ public class ChatRecordFragment extends BaseFragment implements SwipeRefreshLayo
 
     /**
      * 查询聊天记录
+     *
+     * 1通过融云查询本地会话记录
+     * 2.迭代本地会话记录
+     * 3.通过回调拿到conversations.getTargetId() 与 用户的objectId是对应的
+     * 4.objectId拿到个人信息保存到chatRecordModel
+     * 5.chatRecordModel就是RecyclerView中使用的list
+     * 6.mChatRecordAdapter.notifyDataSetChanged();更新界面
      */
     private void queryChatRecord() {
         mChatRecordRefreshLayout.setRefreshing(true);

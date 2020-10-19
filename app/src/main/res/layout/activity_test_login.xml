@@ -19,39 +19,39 @@
             android:layout_margin="30dp"
             android:orientation="vertical">
 
-            <EditText
-                android:id="@+id/et_phone"
+            <TextView
+                android:id="@+id/user_1"
                 android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:background="@drawable/login_edit_bg"
+                android:layout_height="wrap_content"
+                android:layout_margin="12dp"
                 android:cursorVisible="false"
                 android:hint="@string/text_login_phone"
                 android:inputType="phone"
-                android:text="18970962301"
-                android:padding="5dp" />
+                android:padding="5dp"
+                android:text="17983964401" />
 
-            <LinearLayout
+            <TextView
+                android:id="@+id/user_2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:layout_marginBottom="10dp"
-                android:gravity="center"
-                android:orientation="horizontal">
+                android:layout_margin="12dp"
+                android:cursorVisible="false"
+                android:hint="@string/text_login_phone"
+                android:inputType="phone"
+                android:padding="5dp"
+                android:text="18970962301" />
 
-                <EditText
-                    android:text="123456"
-                    android:id="@+id/et_password"
-                    android:layout_width="0dp"
-                    android:layout_height="50dp"
-                    android:layout_weight="1"
-                    android:background="@drawable/login_edit_bg"
-                    android:cursorVisible="false"
-                    android:hint="@string/text_login_password"
-                    android:inputType="textPassword"
-                    android:padding="5dp" />
+            <TextView
+                android:id="@+id/user_3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="12dp"
+                android:cursorVisible="false"
+                android:hint="@string/text_login_phone"
+                android:inputType="phone"
+                android:padding="5dp"
+                android:text="17982964402" />
 
-
-            </LinearLayout>
 
             <Button
                 android:id="@+id/btn_login"

@@ -11,7 +11,10 @@ import java.io.IOException;
 public class Test {
 
     private static void pr(String tag, Object param) {
-        System.out.println(tag + "===" + param + "");
+
+
+
+//        System.out.println(tag + "===" + param + "");
     }
 
     public static void main(String[] args) {
@@ -26,7 +29,12 @@ public class Test {
 //        File file3 = new File(parent, "a.txt");//File类的父路径、子路径
 //        pr("file0",file3);
 
-        mkdir();
+//        mkdir();
+        String content = "C:\\Python27\\;C:\\Python27\\Scripts;C:\\ProgramData\\Oracle\\Java\\javapath;%SystemRoot%\\system32;%SystemRoot%;%SystemRoot%\\System32\\Wbem;%SYSTEMROOT%\\System32\\WindowsPowerShell\\v1.0\\;C:\\Program Files\\TortoiseSVN\\bin;C:\\Program Files\\MySQL\\MySQL Server 5.1\\bin;%JAVA_HOME%\\bin;%JAVA_HOME%;%JAVA_HOME%\\jre\\bin;%CATALINA_HOME%\\bin;%MAVEN_HOME%\\bin;C:\\Program Files (x86)\\Windows Kits\\8.1\\Windows Performance Toolkit\\;C:\\Program Files\\Microsoft SQL Server\\110\\Tools\\Binn\\;%ANDROID_HOME%\\platform-tools;C:\\Users\\hjj\\AppData\\Roaming\\Nox\\bin;C:\\Program Files\\Microsoft\\Web Platform Installer\\;C:\\Program Files\\VisualSVN Server\\bin;C:\\ProgramFiles\\ffmpeg\\bin;C:\\Program Files\\Microsoft SQL Server\\Client SDK\\ODBC\\110\\Tools\\Binn\\;C:\\Program Files (x86)\\Microsoft SQL Server\\120\\Tools\\Binn\\ManagementStudio\\;C:\\Program Files (x86)\\Microsoft SQL Server\\120\\Tools\\Binn\\;C:\\Program Files\\Microsoft SQL Server\\120\\Tools\\Binn\\;C:\\Program Files (x86)\\Microsoft SQL Server\\120\\DTS\\Binn\\;C:\\Program Files\\Microsoft SQL Server\\120\\DTS\\Binn\\;%NDK-ROOT%;C:\\Program Files\\nodejs\\;%GRADLE_HOME%\\bin;C:\\Program Files\\TortoiseGit\\bin;D:\\program\\flutter\\bin;%PUB_HOSTED_URL%;%FLUTTER_STORAGE_BASE_URL%";
+        String[] array = content.split(";");
+        for (String s : array) {
+            System.out.println(s);
+        }
     }
 
 
@@ -53,6 +61,7 @@ public class Test {
 
     /**
      * 创建文件
+     *
      * @throws IOException
      */
     public static void createNewFile() throws IOException {
@@ -88,7 +97,7 @@ public class Test {
 
     /**
      * 创建单级目录
-     *  首先必须保证D:\java这个目录存在
+     * 首先必须保证D:\java这个目录存在
      */
     public static void mkdir() {
         File file = new File("D:\\java\\d.txt");
