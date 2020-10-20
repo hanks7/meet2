@@ -58,9 +58,23 @@ android {
         }
     }
 
+
     //打包配置
     buildTypes {
         release {
+            //清理无用资源
+            //shrinkResources true
+            //是否启动ZipAlign压缩
+            zipAlignEnabled true
+            //Demo需要给同学们使用则暂不混淆
+            //是否混淆
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            //签名
+            signingConfig signingConfigs.release
+        }
+
+        debug {
             //清理无用资源
             //shrinkResources true
             //是否启动ZipAlign压缩

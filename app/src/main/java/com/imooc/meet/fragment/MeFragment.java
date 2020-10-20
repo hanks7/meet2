@@ -24,6 +24,7 @@ import com.liuguilin.framework.event.MessageEvent;
 import com.liuguilin.framework.helper.GlideHelper;
 import com.liuguilin.framework.utils.Density;
 import com.liuguilin.framework.utils.LogUtils;
+import com.liuguilin.framework.utils.Ulog;
 
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
@@ -48,17 +49,27 @@ public class MeFragment extends BaseFragment implements View.OnClickListener {
     private LinearLayout ll_notice;
 
     private TextView tv_server_status;
+    View view;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         Density.setDensity(getActivity().getApplication(), getActivity());
-        View view = inflater.inflate(R.layout.fragment_me, null);
-        initView(view);
+        view = inflater.inflate(R.layout.fragment_me, null);
+        initView();
         return view;
     }
 
-    private void initView(View view) {
+    @Override
+    public void init() {
+        Ulog.i("hidden", "init");
+        initView();
+    }
 
+
+    private void initView() {
+        if (view == null) {
+            return;
+        }
         iv_me_photo = view.findViewById(R.id.iv_me_photo);
         tv_nickname = view.findViewById(R.id.tv_nickname);
 

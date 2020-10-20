@@ -7,6 +7,8 @@ import android.os.Bundle;
 import android.provider.Settings;
 import android.widget.Toast;
 
+import androidx.fragment.app.Fragment;
+
 import com.liuguilin.framework.event.EventManager;
 import com.liuguilin.framework.event.MessageEvent;
 import com.liuguilin.framework.utils.LanguaueUtils;
@@ -14,8 +16,6 @@ import com.liuguilin.framework.utils.LogUtils;
 
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
-
-import androidx.fragment.app.Fragment;
 
 /**
  * FileName: BaseFragment
@@ -35,10 +35,16 @@ public class BaseFragment extends Fragment {
     @Override
     public void onHiddenChanged(boolean hidden) {
         super.onHiddenChanged(hidden);
-        if(!hidden ) {
+
+        if (!hidden) {
             //这里写一些可见的逻辑
             LogUtils.i("ui-fragment", "(" + getClass().getSimpleName() + ".java:0)");
+            init();
         }
+    }
+
+    public void init() {
+
     }
 
     /**

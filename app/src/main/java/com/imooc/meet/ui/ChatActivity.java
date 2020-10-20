@@ -190,7 +190,7 @@ public class ChatActivity extends BaseBackActivity implements View.OnClickListen
         ll_pic.setOnClickListener(this);
         ll_location.setOnClickListener(this);
 
-        updateChatTheme();
+        updateChatTheme();//更新主题
 
         mChatView.setLayoutManager(new LinearLayoutManager(this));
         mChatAdapter = new CommonAdapter<>(mList, new CommonAdapter.OnMoreBindDataListener<ChatModel>() {

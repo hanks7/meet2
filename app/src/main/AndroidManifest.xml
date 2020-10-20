@@ -26,7 +26,8 @@
         <!--高德地图-->
         <meta-data
             android:name="com.amap.api.v2.apikey"
-            android:value="abde3c5f58d7dd9a762019906cef613e" />
+            android:value="3902a2f0050c3ba532061319e49e40af" />
+            <!--android:value="abde3c5f58d7dd9a762019906cef613e" /> 慕课网的高德地图的key-->
 
         <!--Bmob-->
         <provider

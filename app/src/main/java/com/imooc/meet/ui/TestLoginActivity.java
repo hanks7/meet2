@@ -11,9 +11,11 @@ import com.imooc.meet.R;
 import com.liuguilin.framework.base.BaseBackActivity;
 import com.liuguilin.framework.bmob.BmobManager;
 import com.liuguilin.framework.bmob.IMUser;
+import com.liuguilin.framework.entity.Constants;
 import com.liuguilin.framework.helper.ActivityHelper;
 import com.liuguilin.framework.manager.KeyWordManager;
 import com.liuguilin.framework.utils.LogUtils;
+import com.liuguilin.framework.utils.SpUtils;
 
 import cn.bmob.v3.exception.BmobException;
 import cn.bmob.v3.listener.SaveListener;
@@ -32,7 +34,7 @@ public class TestLoginActivity extends BaseBackActivity implements View.OnClickL
 
     private TextView tv_user_1;
     private TextView tv_user_2;
-    private TextView tv_user_3;
+    private TextView tvSelectedAccount;
 
 
     @Override
@@ -49,12 +51,11 @@ public class TestLoginActivity extends BaseBackActivity implements View.OnClickL
         btn_login = findViewById(R.id.btn_login);
         tv_user_1 = findViewById(R.id.user_1);
         tv_user_2 = findViewById(R.id.user_2);
-        tv_user_3 = findViewById(R.id.user_3);
+        tvSelectedAccount = findViewById(R.id.ac_test_login_tv_selected_account);
 
         btn_login.setOnClickListener(this);
         tv_user_1.setOnClickListener(this);
         tv_user_2.setOnClickListener(this);
-        tv_user_3.setOnClickListener(this);
 
         strPhone = tv_user_1.getText().toString();
     }
@@ -63,16 +64,18 @@ public class TestLoginActivity extends BaseBackActivity implements View.OnClickL
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.btn_login:
-
-
+                showDialog();
                 BmobManager.getInstance().loginByAccount(strPhone, "123456", new SaveListener<IMUser>() {
                     @Override
                     public void done(IMUser imUser, BmobException e) {
+                        dismissDialog();
                         KeyWordManager.getInstance().hideKeyWord(TestLoginActivity.this);
                         if (e == null) {
                             //登陆成功
                             startActivity(new Intent(
                                     TestLoginActivity.this, MainActivity.class));
+                            //把手机号码保存下来
+                            SpUtils.getInstance().putString(Constants.SP_PHONE, strPhone);
                             ActivityHelper.getInstance().exit();
                             finish();
                         } else {
@@ -86,16 +89,13 @@ public class TestLoginActivity extends BaseBackActivity implements View.OnClickL
                 break;
             case R.id.user_1:
                 strPhone = tv_user_1.getText().toString();
-                Toast.makeText(this, strPhone, Toast.LENGTH_LONG).show();
+                tvSelectedAccount.setText("故人何必念情-17983964401\n测试密码:123456");
                 break;
             case R.id.user_2:
                 strPhone = tv_user_2.getText().toString();
-                Toast.makeText(this, strPhone, Toast.LENGTH_LONG).show();
+                tvSelectedAccount.setText("没感情就绝交吧-17977964407\n测试密码:123456");
                 break;
-            case R.id.user_3:
-                strPhone = tv_user_3.getText().toString();
-                Toast.makeText(this, strPhone, Toast.LENGTH_LONG).show();
-                break;
+
         }
     }
 }

@@ -24,10 +24,11 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="12dp"
+                android:background="@drawable/selectable_white_gray_background"
                 android:cursorVisible="false"
                 android:hint="@string/text_login_phone"
                 android:inputType="phone"
-                android:padding="5dp"
+                android:padding="15dp"
                 android:text="17983964401" />
 
             <TextView
@@ -35,23 +36,12 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="12dp"
+                android:background="@drawable/selectable_white_gray_background"
                 android:cursorVisible="false"
                 android:hint="@string/text_login_phone"
                 android:inputType="phone"
-                android:padding="5dp"
-                android:text="18970962301" />
-
-            <TextView
-                android:id="@+id/user_3"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="12dp"
-                android:cursorVisible="false"
-                android:hint="@string/text_login_phone"
-                android:inputType="phone"
-                android:padding="5dp"
-                android:text="17982964402" />
-
+                android:padding="15dp"
+                android:text="17977964407" />
 
             <Button
                 android:id="@+id/btn_login"
@@ -64,6 +54,7 @@
         </LinearLayout>
 
         <TextView
+            android:id="@+id/ac_test_login_tv_selected_account"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"

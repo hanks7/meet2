@@ -1,6 +1,7 @@
 package com.liuguilin.framework.base;
 
 import android.Manifest;
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.Uri;
@@ -71,6 +72,7 @@ public abstract class BaseActivity extends AppCompatActivity {
 
         Density.setDensity(getApplication(), this);
         setContentView(getLayoutId());
+        initDialog();
         init();
         loadData();
 
@@ -222,4 +224,23 @@ public abstract class BaseActivity extends AppCompatActivity {
         }
     }
 
+    private ProgressDialog dialog;//显示等待的dialog
+
+    private void initDialog() {
+        dialog = new ProgressDialog(this);
+        dialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);//转盘
+        dialog.setCancelable(false);
+        dialog.setCanceledOnTouchOutside(false);
+        dialog.setMessage("正在加载，请稍后……");
+    }
+
+    public void showDialog() {
+        if (dialog == null) return;
+        dialog.show();
+    }
+
+    public void dismissDialog() {
+        if (dialog == null) return;
+        dialog.dismiss();
+    }
 }

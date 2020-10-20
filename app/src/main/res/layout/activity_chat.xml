@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
     android:id="@+id/ll_chat_bg"
+    android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/mChatView"
-        android:layout_margin="5dp"
         android:layout_width="match_parent"
         android:layout_height="0dp"
+        android:layout_margin="5dp"
         android:layout_weight="1" />
 
     <LinearLayout
@@ -19,25 +19,25 @@
         android:padding="5dp">
 
         <LinearLayout
-            android:gravity="center"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:gravity="center">
 
             <EditText
-                android:paddingLeft="10dp"
                 android:id="@+id/et_input_msg"
-                android:layout_weight="1"
                 android:layout_width="0dp"
                 android:layout_height="40dp"
-                android:background="@drawable/chat_edit_bg" />
+                android:layout_weight="1"
+                android:background="@drawable/chat_edit_bg"
+                android:paddingLeft="10dp" />
 
             <Button
                 android:id="@+id/btn_send_msg"
-                android:layout_marginLeft="5dp"
-                android:text="@string/text_login_send"
-                android:background="@drawable/chat_edit_bg"
                 android:layout_width="50dp"
-                android:layout_height="40dp" />
+                android:layout_height="40dp"
+                android:layout_marginLeft="5dp"
+                android:background="@drawable/chat_edit_bg"
+                android:text="@string/text_login_send" />
 
         </LinearLayout>
 
@@ -53,11 +53,12 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                android:padding="4dp">
 
                 <ImageView
-                    android:layout_width="32dp"
-                    android:layout_height="32dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
                     android:src="@drawable/img_voice" />
             </LinearLayout>
 
@@ -67,11 +68,12 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                android:padding="4dp">
 
                 <ImageView
-                    android:layout_width="32dp"
-                    android:layout_height="32dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
                     android:src="@drawable/img_camera_chat" />
             </LinearLayout>
 
@@ -81,11 +83,12 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                android:padding="4dp">
 
                 <ImageView
-                    android:layout_width="32dp"
-                    android:layout_height="32dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
                     android:src="@drawable/img_pic" />
 
             </LinearLayout>
@@ -97,11 +100,12 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                android:padding="4dp">
 
                 <ImageView
-                    android:layout_width="32dp"
-                    android:layout_height="32dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
                     android:src="@drawable/img_location" />
             </LinearLayout>
 
