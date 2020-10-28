@@ -1,5 +1,6 @@
 package com.imooc.meet.ui;
 
+import android.Manifest;
 import android.animation.ObjectAnimator;
 import android.content.Intent;
 import android.content.res.AssetFileDescriptor;
@@ -16,6 +17,7 @@ import com.liuguilin.framework.base.BasePageAdapter;
 import com.liuguilin.framework.base.BaseUIActivity;
 import com.liuguilin.framework.manager.MediaPlayerManager;
 import com.liuguilin.framework.utils.AnimUtils;
+import com.liuguilin.framework.utils.permission.UPermissionsTool;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -56,7 +58,6 @@ public class GuideActivity extends BaseUIActivity implements View.OnClickListene
     private MediaPlayerManager mGuideMusic;
 
     private ObjectAnimator mAnim;
-
 
 
     @Override
@@ -106,7 +107,7 @@ public class GuideActivity extends BaseUIActivity implements View.OnClickListene
         AnimationDrawable animNight = (AnimationDrawable) iv_guide_night.getBackground();
         animNight.start();
 
-        AnimationDrawable animSmile= (AnimationDrawable) iv_guide_smile.getBackground();
+        AnimationDrawable animSmile = (AnimationDrawable) iv_guide_smile.getBackground();
         animSmile.start();
 
         //小圆点逻辑
@@ -129,6 +130,19 @@ public class GuideActivity extends BaseUIActivity implements View.OnClickListene
 
         //歌曲的逻辑
         startMusic();
+
+        UPermissionsTool.
+                getIntance(this).
+                addPermission(Manifest.permission.ACCESS_FINE_LOCATION).
+                addPermission(Manifest.permission.ACCESS_COARSE_LOCATION).
+                addPermission(Manifest.permission.READ_EXTERNAL_STORAGE).
+                addPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE).
+                addPermission(Manifest.permission.CAMERA).
+                addPermission(Manifest.permission.READ_CONTACTS).
+                addPermission(Manifest.permission.RECORD_AUDIO).
+                addPermission(Manifest.permission.CALL_PHONE).
+                addPermission(Manifest.permission.READ_PHONE_STATE).
+                initPermission();
     }
 
     /**
@@ -155,10 +169,11 @@ public class GuideActivity extends BaseUIActivity implements View.OnClickListene
 
     /**
      * 动态选择小圆点
+     *
      * @param position
      */
     private void seletePoint(int position) {
-        switch (position){
+        switch (position) {
             case 0:
                 iv_guide_point_1.setImageResource(R.drawable.img_guide_point_p);
                 iv_guide_point_2.setImageResource(R.drawable.img_guide_point);
@@ -179,20 +194,20 @@ public class GuideActivity extends BaseUIActivity implements View.OnClickListene
 
     @Override
     public void onClick(View view) {
-        switch (view.getId()){
+        switch (view.getId()) {
             case R.id.iv_music_switch:
-                if(mGuideMusic.MEDIA_STATUS == MediaPlayerManager.MEDIA_STATUS_PAUSE){
+                if (mGuideMusic.MEDIA_STATUS == MediaPlayerManager.MEDIA_STATUS_PAUSE) {
                     mAnim.start();
                     mGuideMusic.continuePlay();
                     iv_music_switch.setImageResource(R.drawable.img_guide_music);
-                }else if(mGuideMusic.MEDIA_STATUS == MediaPlayerManager.MEDIA_STATUS_PLAY){
+                } else if (mGuideMusic.MEDIA_STATUS == MediaPlayerManager.MEDIA_STATUS_PLAY) {
                     mAnim.pause();
                     mGuideMusic.pausePlay();
                     iv_music_switch.setImageResource(R.drawable.img_guide_music_off);
                 }
                 break;
             case R.id.tv_guide_skip:
-                startActivity(new Intent(this,LoginActivity.class));
+                startActivity(new Intent(this, LoginActivity.class));
                 finish();
                 break;
         }

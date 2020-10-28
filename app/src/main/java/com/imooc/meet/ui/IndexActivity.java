@@ -6,13 +6,13 @@ import android.os.Handler;
 import android.os.Message;
 import android.text.TextUtils;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.imooc.meet.MainActivity;
 import com.imooc.meet.R;
 import com.liuguilin.framework.bmob.BmobManager;
 import com.liuguilin.framework.entity.Constants;
 import com.liuguilin.framework.utils.SpUtils;
-
-import androidx.appcompat.app.AppCompatActivity;
 
 /**
  * FileName: IndexActivity

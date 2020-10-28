@@ -1,6 +1,9 @@
 package com.liuguilin.framework.utils;
 
+import android.Manifest;
 import android.os.Environment;
+
+import com.liuguilin.framework.utils.permission.PermissionReq;
 
 import java.io.BufferedWriter;
 import java.io.File;
@@ -50,6 +53,9 @@ public class LogUtils {
      * @param text
      */
     private static void writeToFile(String text) {
+
+        if (!PermissionReq.isHasPermission(Ulog.context, Manifest.permission.WRITE_EXTERNAL_STORAGE))
+            return;
         //开始写入
         FileOutputStream fileOutputStream = null;
         BufferedWriter bufferedWriter = null;

@@ -8,5 +8,5 @@
     <string name="text_chat_friend_msg_channl">friend message</string>
 
     <string name="text_server_status">Server not connected</string>
-
+    <string name="permission_note">\ %s权限\未获得,请在系统设置或者安全中心-->\权限设置\中添加相应权限</string>
 </resources>

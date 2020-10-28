@@ -39,6 +39,7 @@ import com.liuguilin.framework.utils.CommonUtils;
 import com.liuguilin.framework.utils.LogUtils;
 import com.liuguilin.framework.utils.SpUtils;
 import com.liuguilin.framework.utils.TimeUtils;
+import com.liuguilin.framework.utils.Ulog;
 
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
@@ -387,7 +388,7 @@ public class ChatActivity extends BaseBackActivity implements View.OnClickListen
             if (objectName.equals(CloudManager.MSG_TEXT_NAME)) {
                 TextMessage textMessage = (TextMessage) m.getContent();
                 String msg = textMessage.getContent();
-                LogUtils.i("msg:" + msg);
+                Ulog.i("msg:" + msg);
                 try {
                     TextBean textBean = new Gson().fromJson(msg, TextBean.class);
                     if (textBean.getType().equals(CloudManager.TYPE_TEXT)) {
@@ -405,7 +406,7 @@ public class ChatActivity extends BaseBackActivity implements View.OnClickListen
                 ImageMessage imageMessage = (ImageMessage) m.getContent();
                 String url = imageMessage.getRemoteUri().toString();
                 if (!TextUtils.isEmpty(url)) {
-                    LogUtils.i("url:" + url);
+                    Ulog.i("url:" + url);
                     if (m.getSenderUserId().equals(yourUserId)) {
                         addImage(0, url);
                     } else {
@@ -459,8 +460,8 @@ public class ChatActivity extends BaseBackActivity implements View.OnClickListen
 
         meUserPhoto = BmobManager.getInstance().getUser().getPhoto();
 
-        LogUtils.i("yourUserPhoto:" + yourUserPhoto);
-        LogUtils.i("meUserPhoto:" + meUserPhoto);
+        Ulog.i("yourUserPhoto:" + yourUserPhoto);
+        Ulog.i("meUserPhoto:" + meUserPhoto);
 
         //设置标题
         if (!TextUtils.isEmpty(yourUserName)) {
@@ -471,7 +472,7 @@ public class ChatActivity extends BaseBackActivity implements View.OnClickListen
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
-            case R.id.btn_send_msg:
+            case R.id.btn_send_msg://发送文本消息
                 String inputText = et_input_msg.getText().toString().trim();
                 if (TextUtils.isEmpty(inputText)) {
                     return;
@@ -482,13 +483,13 @@ public class ChatActivity extends BaseBackActivity implements View.OnClickListen
                 //清空
                 et_input_msg.setText("");
                 break;
-            case R.id.ll_voice:
+            case R.id.ll_voice://语音识别
                 VoiceManager.getInstance(this).startSpeak(new RecognizerDialogListener() {
                     @Override
                     public void onResult(RecognizerResult recognizerResult, boolean b) {
                         String result = recognizerResult.getResultString();
                         if (!TextUtils.isEmpty(result)) {
-                            LogUtils.i("result:" + result);
+                            Ulog.i("result:" + result);
                             VoiceBean voiceBean = new Gson().fromJson(result, VoiceBean.class);
                             if (voiceBean.isLs()) {
                                 StringBuffer sb = new StringBuffer();
@@ -497,7 +498,7 @@ public class ChatActivity extends BaseBackActivity implements View.OnClickListen
                                     String sResult = wsBean.getCw().get(0).getW();
                                     sb.append(sResult);
                                 }
-                                LogUtils.i("result:" + sb.toString());
+                                Ulog.i("result:" + sb.toString());
                                 et_input_msg.setText(sb.toString());
                             }
                         }
@@ -509,13 +510,13 @@ public class ChatActivity extends BaseBackActivity implements View.OnClickListen
                     }
                 });
                 break;
-            case R.id.ll_camera:
+            case R.id.ll_camera://打开相机
                 FileHelper.getInstance().toCamera(this);
                 break;
-            case R.id.ll_pic:
+            case R.id.ll_pic://打开相册
                 FileHelper.getInstance().toAlbum(this);
                 break;
-            case R.id.ll_location:
+            case R.id.ll_location://发送位置
                 LocationActivity.startActivity(this, true, 0, 0, "", LOCATION_REQUEST_CODE);
                 break;
         }
@@ -565,7 +566,7 @@ public class ChatActivity extends BaseBackActivity implements View.OnClickListen
      * @param text
      */
     private void addText(int index, String text) {
-        LogUtils.i("ChatA:" + text);
+        Ulog.i("ChatA:" + text);
         ChatModel model = new ChatModel();
         if (index == 0) {
             model.setType(TYPE_LEFT_TEXT);
@@ -638,13 +639,13 @@ public class ChatActivity extends BaseBackActivity implements View.OnClickListen
             return;
         }
         switch (event.getType()) {
-            case EventManager.FLAG_SEND_TEXT:
+            case EventManager.FLAG_SEND_TEXT://判断接收到是文字
                 addText(0, event.getText());
                 break;
-            case EventManager.FLAG_SEND_IMAGE:
+            case EventManager.FLAG_SEND_IMAGE://判断接收到的是图片
                 addImage(0, event.getImgUrl());
                 break;
-            case EventManager.FLAG_SEND_LOCATION:
+            case EventManager.FLAG_SEND_LOCATION://判断接收到的是地址坐标
                 addLocation(0, event.getLa(), event.getLo(), event.getAddress());
                 break;
         }
@@ -653,9 +654,9 @@ public class ChatActivity extends BaseBackActivity implements View.OnClickListen
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (resultCode == Activity.RESULT_OK) {
-            if (requestCode == FileHelper.CAMEAR_REQUEST_CODE) {
+            if (requestCode == FileHelper.CAMEAR_REQUEST_CODE) {//拍照返回
                 uploadFile = FileHelper.getInstance().getTempFile();
-            } else if (requestCode == FileHelper.ALBUM_REQUEST_CODE) {
+            } else if (requestCode == FileHelper.ALBUM_REQUEST_CODE) {//相册返回
                 Uri uri = data.getData();
                 if (uri != null) {
                     //String path = uri.getPath();
@@ -666,14 +667,14 @@ public class ChatActivity extends BaseBackActivity implements View.OnClickListen
                         uploadFile = new File(path);
                     }
                 }
-            } else if (requestCode == LOCATION_REQUEST_CODE) {
+            } else if (requestCode == LOCATION_REQUEST_CODE) {//高德地图返回
                 double la = data.getDoubleExtra("la", 0);
                 double lo = data.getDoubleExtra("lo", 0);
                 String address = data.getStringExtra("address");
 
-                LogUtils.i("la:" + la);
-                LogUtils.i("lo:" + lo);
-                LogUtils.i("address:" + address);
+                Ulog.i("la:" , la);
+                Ulog.i("lo:" , lo);
+                Ulog.i("address:" , address);
 
                 if (TextUtils.isEmpty(address)) {
                     MapManager.getInstance().poi2address(la, lo, new MapManager.OnPoi2AddressGeocodeListener() {
@@ -690,7 +691,7 @@ public class ChatActivity extends BaseBackActivity implements View.OnClickListen
                     addLocation(1, la, lo, address);
                 }
 
-            } else if (requestCode == CHAT_INFO_REQUEST_CODE) {
+            } else if (requestCode == CHAT_INFO_REQUEST_CODE) {// 删除好友之后的返回,直接关闭当前页
                 finish();
             }
             if (uploadFile != null) {

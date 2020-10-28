@@ -4,9 +4,10 @@ import android.app.ActivityManager;
 import android.app.Application;
 import android.content.Context;
 
-import com.liuguilin.framework.Framework;
-
 import androidx.multidex.MultiDex;
+
+import com.liuguilin.framework.Framework;
+import com.liuguilin.framework.utils.Ulog;
 
 /**
  * FileName: BaseApp
@@ -24,6 +25,7 @@ public class BaseApp extends Application {
     public void onCreate() {
         super.onCreate();
         app = this;
+        Ulog.context = this;
         /**
          * Application的优化
          * 1.必要的组件在程序主页去初始化

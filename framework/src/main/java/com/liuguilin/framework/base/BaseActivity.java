@@ -17,6 +17,7 @@ import com.liuguilin.framework.event.MessageEvent;
 import com.liuguilin.framework.utils.Density;
 import com.liuguilin.framework.utils.LanguaueUtils;
 import com.liuguilin.framework.utils.LogUtils;
+import com.liuguilin.framework.utils.permission.PermissionReq;
 
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
@@ -171,7 +172,9 @@ public abstract class BaseActivity extends AppCompatActivity {
             }
         }
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        PermissionReq.onRequestPermissionsResult(requestCode, permissions, grantResults);
     }
+
 
     protected interface OnPermissionsResult {
         void OnSuccess();

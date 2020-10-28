@@ -341,7 +341,7 @@ public class CloudService extends Service implements View.OnClickListener {
         CloudManager.getInstance().setOnReceiveMessageListener(new RongIMClient.OnReceiveMessageListener() {
             @Override
             public boolean onReceived(Message message, int i) {
-                Ulog.i("message",message);
+                Ulog.i("message", message);
                 parsingImMessage(message);
                 return false;
             }
@@ -351,7 +351,7 @@ public class CloudService extends Service implements View.OnClickListener {
         CloudManager.getInstance().setReceivedCallListener(new IRongReceivedCallListener() {
             @Override
             public void onReceivedCall(RongCallSession rongCallSession) {
-                LogUtils.i("rongCallSession","开始接受消息");
+                LogUtils.i("rongCallSession", "开始接受消息");
 
                 //检查设备可用
                 if (!CloudManager.getInstance().isVoIPEnabled(CloudService.this)) {
@@ -615,14 +615,14 @@ public class CloudService extends Service implements View.OnClickListener {
      * @param message
      */
     private void parsingImMessage(Message message) {
-        LogUtils.i("parsingImMessage-message" , message);
+        LogUtils.i("parsingImMessage-message", message);
         String objectName = message.getObjectName();
-        //文本消息
+//判断是否为文本消息
         if (objectName.equals(CloudManager.MSG_TEXT_NAME)) {
             //获取消息主体
             TextMessage textMessage = (TextMessage) message.getContent();
             String content = textMessage.getContent();
-            LogUtils.i("parsingImMessage-content" , content);
+            LogUtils.i("parsingImMessage-content", content);
             TextBean textBean = null;
             try {
                 textBean = new Gson().fromJson(content, TextBean.class);
@@ -630,7 +630,7 @@ public class CloudService extends Service implements View.OnClickListener {
                 e.printStackTrace();
             }
             if (null == textBean) {
-                //系统调试消息
+//系统调试消息
                 MessageEvent event = new MessageEvent(EventManager.FLAG_SEND_TEXT);
                 event.setText(content);
                 event.setUserId(message.getSenderUserId());
@@ -638,18 +638,17 @@ public class CloudService extends Service implements View.OnClickListener {
                 pushSystem(message.getSenderUserId(), 1, 0, 0, content);
                 return;
             }
-            //普通消息
-            if (textBean.getType().equals(CloudManager.TYPE_TEXT)) {
+            if (textBean.getType().equals(CloudManager.TYPE_TEXT)) {//判断是否为普通消息
                 MessageEvent event = new MessageEvent(EventManager.FLAG_SEND_TEXT);
                 event.setUserId(message.getSenderUserId());
                 event.setText(textBean.getMsg());
                 EventManager.post(event);
                 pushSystem(message.getSenderUserId(), 1, 0, 0, textBean.getMsg());
-                //添加好友消息
+//判断是否为添加好友信息
             } else if (textBean.getType().equals(CloudManager.TYPE_ADD_FRIEND)) {
                 //存入数据库 Bmob RongCloud 都没有提供存储方法
                 //使用另外的方法来实现 存入本地数据库
-                LogUtils.i("parsingImMessage","添加好友消息");
+                LogUtils.i("parsingImMessage", "添加好友消息");
                 saveNewFriend(textBean.getMsg(), message.getSenderUserId());
                 //查询数据库如果有重复的则不添加
                 //防止漏了消息，暂时对消息不过滤处理
@@ -676,7 +675,9 @@ public class CloudService extends Service implements View.OnClickListener {
 //                                saveNewFriend(textBean.getMsg(), message.getSenderUserId());
 //                            }
 //                        });
-                //同意添加好友消息
+
+
+//判断是否为同意添加好友消息的接收
             } else if (textBean.getType().equals(CloudManager.TYPE_ARGEED_FRIEND)) {
                 //1.添加到好友列表
                 BmobManager.getInstance().addFriend(message.getSenderUserId(), new SaveListener<String>() {
@@ -690,6 +691,7 @@ public class CloudService extends Service implements View.OnClickListener {
                     }
                 });
             }
+            //判断是否为图片接收
         } else if (objectName.equals(CloudManager.MSG_IMAGE_NAME)) {
             try {
                 ImageMessage imageMessage = (ImageMessage) message.getContent();
@@ -706,6 +708,7 @@ public class CloudService extends Service implements View.OnClickListener {
                 LogUtils.e("e." + e.toString());
                 e.printStackTrace();
             }
+            //判断是否为地址坐标接收
         } else if (objectName.equals(CloudManager.MSG_LOCATION_NAME)) {
             LocationMessage locationMessage = (LocationMessage) message.getContent();
             LogUtils.e("parsingImMessage-locationMessage:" + locationMessage.toString());
