@@ -14,6 +14,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.liuguilin.framework.event.EventManager;
 import com.liuguilin.framework.event.MessageEvent;
+import com.liuguilin.framework.helper.ActivityHelper;
 import com.liuguilin.framework.utils.Density;
 import com.liuguilin.framework.utils.LanguaueUtils;
 import com.liuguilin.framework.utils.LogUtils;
@@ -79,6 +80,7 @@ public abstract class BaseActivity extends AppCompatActivity {
 
         LanguaueUtils.updateLanguaue(this);
         EventManager.register(this);
+        ActivityHelper.getInstance().addActivity(this);
     }
 
     protected abstract int getLayoutId();
