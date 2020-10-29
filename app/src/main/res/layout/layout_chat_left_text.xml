@@ -13,8 +13,8 @@
 
         <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/iv_left_photo"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
             android:layout_marginLeft="10dp"
             android:src="@mipmap/ic_launcher" />
 
@@ -24,7 +24,7 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
             android:textColor="@android:color/black"
-            android:textSize="16sp" />
+            android:textSize="14sp" />
 
     </LinearLayout>
 </RelativeLayout>

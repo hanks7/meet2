@@ -225,7 +225,7 @@ public class SettingActivity extends BaseBackActivity implements View.OnClickLis
         intent_login.setClass(SettingActivity.this, LoginActivity.class);
         intent_login.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         startActivity(intent_login);
-        finish();
+        ActivityHelper.getInstance().exit();
     }
 
     private void openWindow() {

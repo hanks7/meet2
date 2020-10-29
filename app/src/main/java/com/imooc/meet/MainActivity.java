@@ -27,6 +27,7 @@ import com.liuguilin.framework.entity.Constants;
 import com.liuguilin.framework.event.EventManager;
 import com.liuguilin.framework.event.MessageEvent;
 import com.liuguilin.framework.gson.TokenBean;
+import com.liuguilin.framework.helper.ActivityHelper;
 import com.liuguilin.framework.helper.UpdateHelper;
 import com.liuguilin.framework.java.SimulationData;
 import com.liuguilin.framework.manager.DialogManager;
@@ -544,7 +545,7 @@ public class MainActivity extends BaseUIActivity implements View.OnClickListener
             Toast.makeText(this, getString(R.string.text_main_exit), Toast.LENGTH_LONG).show();
             return;
         }
-        finish();
+        ActivityHelper.getInstance().exit();
     }
 
     //isDisposed：检查是否解绑
