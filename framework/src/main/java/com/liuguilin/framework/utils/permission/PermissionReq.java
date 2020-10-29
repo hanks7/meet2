@@ -206,8 +206,12 @@ public class PermissionReq {
      * @param message
      */
     public static void showDialog(final Context context, String message) {
-
-
+        if (context == null) {
+           return;
+        }
+        if (message == null) {
+            return;
+        }
         AlertDialog.Builder builder = new AlertDialog.Builder(context);
         builder.setTitle("提示");
         //<string name="permission_note">\ %s权限\未获得,请在系统设置或者安全中心-->\权限设置\中添加相应权限</string>
