@@ -24,7 +24,6 @@ import com.liuguilin.framework.event.EventManager;
 import com.liuguilin.framework.event.MessageEvent;
 import com.liuguilin.framework.gson.TextBean;
 import com.liuguilin.framework.utils.CommonUtils;
-import com.liuguilin.framework.utils.Density;
 import com.liuguilin.framework.utils.LogUtils;
 
 import org.greenrobot.eventbus.Subscribe;
@@ -56,7 +55,6 @@ public class ChatRecordFragment extends BaseFragment implements SwipeRefreshLayo
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        Density.setDensity(getActivity().getApplication(), getActivity());
         View view = inflater.inflate(R.layout.fragment_chat_record, null);
         initView(view);
         return view;

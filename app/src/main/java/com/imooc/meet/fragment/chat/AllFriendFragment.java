@@ -22,7 +22,6 @@ import com.liuguilin.framework.bmob.IMUser;
 import com.liuguilin.framework.event.EventManager;
 import com.liuguilin.framework.event.MessageEvent;
 import com.liuguilin.framework.utils.CommonUtils;
-import com.liuguilin.framework.utils.Density;
 import com.liuguilin.framework.utils.LogUtils;
 
 import org.greenrobot.eventbus.Subscribe;
@@ -50,7 +49,6 @@ public class AllFriendFragment extends BaseFragment implements SwipeRefreshLayou
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        Density.setDensity(getActivity().getApplication(), getActivity());
         View view = inflater.inflate(R.layout.fragment_all_record, null);
         initView(view);
         return view;

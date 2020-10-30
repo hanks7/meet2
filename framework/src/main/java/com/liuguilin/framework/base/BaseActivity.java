@@ -15,7 +15,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.liuguilin.framework.event.EventManager;
 import com.liuguilin.framework.event.MessageEvent;
 import com.liuguilin.framework.helper.ActivityHelper;
-import com.liuguilin.framework.utils.Density;
 import com.liuguilin.framework.utils.LanguaueUtils;
 import com.liuguilin.framework.utils.LogUtils;
 import com.liuguilin.framework.utils.permission.PermissionReq;
@@ -72,7 +71,6 @@ public abstract class BaseActivity extends AppCompatActivity {
 
         super.onCreate(savedInstanceState);
 
-        Density.setDensity(getApplication(), this);
         setContentView(getLayoutId());
         initDialog();
         init();

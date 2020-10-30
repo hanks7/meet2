@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -16,29 +17,34 @@
             android:layout_marginLeft="10dp"
             android:src="@mipmap/ic_launcher" />
 
-        <RelativeLayout
+        <LinearLayout
             android:id="@+id/rl_left_content"
-            android:layout_width="220dp"
-            android:layout_height="150dp"
-            android:layout_marginLeft="10dp">
+            android:layout_width="230dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:orientation="vertical">
 
             <ImageView
                 android:id="@+id/iv_left_location_img"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:scaleType="fitXY" />
+                android:layout_height="90dp"
+                android:adjustViewBounds="true"
+                android:scaleType="centerCrop"
+                android:src="@mipmap/test_img" />
 
             <TextView
                 android:id="@+id/tv_left_address"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_alignParentBottom="true"
                 android:background="@color/colorAccent"
-                android:padding="10dp"
-                android:text="---"
-                android:textColor="@android:color/white" />
+                android:ellipsize="end"
+                android:maxLines="2"
+                android:padding="6dp"
+                android:textColor="@android:color/white"
+                android:textSize="10sp"
+                tools:text="测试测试" />
 
-        </RelativeLayout>
+        </LinearLayout>
 
     </LinearLayout>
 </RelativeLayout>

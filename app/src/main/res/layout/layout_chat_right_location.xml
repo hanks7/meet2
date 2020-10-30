@@ -1,40 +1,44 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
     <LinearLayout
-        android:gravity="right"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
         android:layout_marginTop="10dp"
+        android:gravity="right"
         android:orientation="horizontal">
 
-        <RelativeLayout
+        <LinearLayout
             android:id="@+id/rl_right_content"
+            android:layout_width="230dp"
+            android:layout_height="wrap_content"
             android:layout_marginRight="10dp"
-            android:layout_width="220dp"
-            android:layout_height="150dp">
+            android:orientation="vertical">
 
             <ImageView
-                android:scaleType="fitXY"
                 android:id="@+id/iv_right_location_img"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                />
+                android:layout_height="90dp"
+                android:adjustViewBounds="true"
+                android:scaleType="centerCrop" />
 
             <TextView
                 android:id="@+id/tv_right_address"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_alignParentBottom="true"
                 android:background="@color/colorAccent"
-                android:padding="10dp"
-                android:text="---"
-                android:textColor="@android:color/white" />
+                android:ellipsize="end"
+                android:maxLines="2"
+                android:padding="6dp"
+                android:textColor="@android:color/white"
+                android:textSize="12sp"
+                tools:text="测试测试" />
 
-        </RelativeLayout>
+        </LinearLayout>
 
 
         <de.hdodenhof.circleimageview.CircleImageView

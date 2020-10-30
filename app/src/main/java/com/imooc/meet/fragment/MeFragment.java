@@ -22,7 +22,6 @@ import com.liuguilin.framework.cloud.CloudManager;
 import com.liuguilin.framework.event.EventManager;
 import com.liuguilin.framework.event.MessageEvent;
 import com.liuguilin.framework.helper.GlideHelper;
-import com.liuguilin.framework.utils.Density;
 import com.liuguilin.framework.utils.LogUtils;
 import com.liuguilin.framework.utils.Ulog;
 
@@ -53,7 +52,6 @@ public class MeFragment extends BaseFragment implements View.OnClickListener {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        Density.setDensity(getActivity().getApplication(), getActivity());
         view = inflater.inflate(R.layout.fragment_me, null);
         initView();
         return view;

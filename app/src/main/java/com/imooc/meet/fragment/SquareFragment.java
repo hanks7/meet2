@@ -128,7 +128,6 @@ public class SquareFragment extends BaseFragment implements View.OnClickListener
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        Density.setDensity(getActivity().getApplication(), getActivity());
         View view = inflater.inflate(R.layout.fragment_square, null);
         initView(view);
         return view;

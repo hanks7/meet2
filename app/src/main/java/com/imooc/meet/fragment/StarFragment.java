@@ -27,7 +27,6 @@ import com.liuguilin.framework.event.MessageEvent;
 import com.liuguilin.framework.helper.PairFriendHelper;
 import com.liuguilin.framework.manager.DialogManager;
 import com.liuguilin.framework.utils.CommonUtils;
-import com.liuguilin.framework.utils.Density;
 import com.liuguilin.framework.utils.LogUtils;
 import com.liuguilin.framework.view.DialogView;
 import com.liuguilin.framework.view.LodingView;
@@ -81,7 +80,6 @@ public class StarFragment extends BaseFragment implements View.OnClickListener {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        Density.setDensity(getActivity().getApplication(), getActivity());
         View view = inflater.inflate(R.layout.fragment_star, null);
         initView(view);
         return view;

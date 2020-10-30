@@ -7,6 +7,7 @@ import android.content.Context;
 import androidx.multidex.MultiDex;
 
 import com.liuguilin.framework.Framework;
+import com.liuguilin.framework.utils.DensityUtil;
 import com.liuguilin.framework.utils.Ulog;
 
 /**
@@ -24,6 +25,7 @@ public class BaseApp extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
+        DensityUtil.setDensity(this,420f);
         app = this;
         Ulog.context = this;
         /**
