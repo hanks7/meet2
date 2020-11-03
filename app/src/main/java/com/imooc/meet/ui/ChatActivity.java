@@ -543,8 +543,13 @@ public class ChatActivity extends BaseBackActivity implements View.OnClickListen
         model.setMessageTime(currentTime);
         mList.add(model);
         mChatAdapter.notifyDataSetChanged();
-        //滑动到底部
-        mChatView.scrollToPosition(mList.size() - 1);
+        mChatView.postDelayed(() -> {
+            //滑动到底部
+            mChatView.scrollToPosition(mList.size() - 1);
+        }, 1000);
+
+
+
     }
 
     /**

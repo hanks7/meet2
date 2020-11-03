@@ -20,7 +20,6 @@ import com.liuguilin.framework.bmob.IMUser;
 import com.liuguilin.framework.db.CallRecord;
 import com.liuguilin.framework.db.LitePalHelper;
 import com.liuguilin.framework.utils.CommonUtils;
-import com.liuguilin.framework.utils.Density;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;

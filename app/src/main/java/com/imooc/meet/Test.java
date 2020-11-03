@@ -10,15 +10,20 @@ import java.io.IOException;
  */
 public class Test {
 
-    private static void pr(String tag, Object param) {
-
-
-
-//        System.out.println(tag + "===" + param + "");
-    }
 
     public static void main(String[] args) {
-//        pr("file0",File.pathSeparator);  //   ;
+        String string = "aaa456ac";
+        System.out.println(string.indexOf("a", 3));
+        System.out.println(string.substring(string.indexOf("a", 1)));
+
+    }
+
+    private static void pr(String tag, Object param) {
+        System.out.println(tag + ":" + param);
+    }
+
+    private static void test1() {
+        //        pr("file0",File.pathSeparator);  //   ;
 //        pr("file0",File.separator);      //  \
 
 //        File file = new File("D:\\java\\b.txt");  //双\\是转义

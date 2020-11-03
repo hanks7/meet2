@@ -41,7 +41,7 @@ import com.liuguilin.framework.helper.WindowHelper;
 import com.liuguilin.framework.manager.MediaPlayerManager;
 import com.liuguilin.framework.utils.AnimUtils;
 import com.liuguilin.framework.utils.CommonUtils;
-import com.liuguilin.framework.utils.Density;
+
 import com.liuguilin.framework.utils.LogUtils;
 import com.liuguilin.framework.utils.TimeUtils;
 import com.liuguilin.framework.view.VideoJzvdStd;
